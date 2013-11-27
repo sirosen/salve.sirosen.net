@@ -1,34 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
+---
+layout: default
+---
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>SALVE by sirosen</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>SALVE</h1>
-        <h2>Why Use SALVE</h2>
-        <a href="https://github.com/sirosen/SALVE" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-
+{% include header.html rootpath=".." %}
 
 <h1>
 <a name="why-salve" class="anchor" href="#why-salve"><span class="octicon octicon-link"></span></a>Why SALVE?</h1>
@@ -100,28 +74,3 @@ Although SALVE is, technically, an interpreted language, the parser, variable ex
 <p>The ultimate goal is to ensure, as much as possible, that the requested actions can be executed successfully.
 This includes validating acceptable values, and ensuring the effective UID grants sufficient permissions to perform actions.
 Ultimately, the burden is on you to ensure that your configuration is correct, but SALVE will do its best to detect and abort on errors pertaining to botched specifications prior to any part of the execution beginning.</p>
-
-
-
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/sirosen/SALVE/zipball/stable" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/sirosen/SALVE/tarball/stable" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/sirosen/SALVE"></a> is maintained by <a href="https://github.com/sirosen">sirosen</a>.</p>
-
-          <p>This page uses a modified version of the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
-</html>
