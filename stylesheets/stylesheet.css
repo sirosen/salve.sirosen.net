@@ -157,6 +157,30 @@ aside a.button {
   font-size: 21px;
 }
 
+a.linkbutton {
+  line-height: 1.2;
+  font-size: 23px;
+  color: #fff;
+  padding-left: 22px;
+  padding-top: 22px;
+  margin-bottom: 22px;
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+}
+a.linkbutton small {
+  display: block;
+  font-size: 11px;
+}
+header a.linkbutton {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+aside a.linkbutton {
+  padding-left: 64px;
+  display: block;
+  font-size: 21px;
+}
+
 code, pre {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #222;

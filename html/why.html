@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>SALVE by sirosen</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>SALVE</h1>
+        <h2>Why Use SALVE</h2>
+        <a href="https://github.com/sirosen/SALVE" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+
+
+<h1>
+<a name="why-salve" class="anchor" href="#why-salve"><span class="octicon octicon-link"></span></a>Why SALVE?</h1>
+
+<p>SALVE is designed to make your life easier, not harder, your configuration simpler, not more complicated, and to let you do it YOUR way, no matter how right or wrong your way might be.
+The primary motivation is a confluence of two major factors: versioned configuration is good and configuration management systems are too complicated.</p>
+
+<h2>
+<a name="the-server-node-architecture-is-sometimes-overcomplicated" class="anchor" href="#the-server-node-architecture-is-sometimes-overcomplicated"><span class="octicon octicon-link"></span></a>The Server-Node Architecture is Sometimes Overcomplicated</h2>
+
+<p>Most configuration management software works around the notion of a configuration management server which polls and modifies nodes.
+This complicates the core task of managing configuration on an individual machine with logic relating to the interaction between the server and the managed nodes.</p>
+
+<p>Furthermore, with Puppet, Chef, and similar tools, the capacity for node introspection makes knowing what will happen on deployment very hard.
+Machines can ask questions "Am I listed as a 'web-server'? Am I in the 'nagios-monitored' group?" and dispatch on the answers.</p>
+
+<p>With SALVE, you instead keep a version controlled directory of configuration, and manage it as you see fit.
+It is recommended to do this using one of the large free git server providers like GitHub.
+When you want to deploy on a node, all you need to do to know how a deployment will run is ensure that the local repository is up-to-date.
+This dramatically simplified approach is much more suitable to personal configuration, and may even be appropriate for some small-scale Ops.</p>
+
+<h2>
+<a name="goal-oriented-systems-are-hard-to-understand" class="anchor" href="#goal-oriented-systems-are-hard-to-understand"><span class="octicon octicon-link"></span></a>Goal-Oriented Systems are Hard to Understand</h2>
+
+<p>Furthermore, almost all of the server-node based systems are "goal oriented".
+Rather than listing a set of commands, they try to describe the desired state of the system, and then put it in that state.
+This makes it hard to understand the flow of execution, especially in the presence of errors.</p>
+
+<p>By contrast, SALVE execution is purely sequential, meaning that it should be possible to read manifests top to bottom and know what will be executed.
+This should hold regardless of the machine state.</p>
+
+<p>One of the main advantages of goal-oriented configuration is that it guarantees that multiple runs are idempotent.
+SALVE aims to solve this problem in the simplest and most direct way possible, by using a DSL which only supports descriptions of idempotent actions.</p>
+
+<h2>
+<a name="simplicity-is-elegance" class="anchor" href="#simplicity-is-elegance"><span class="octicon octicon-link"></span></a>Simplicity is Elegance</h2>
+
+<p>The core philosophy is not disimilar to the common UNIX perspective on command line tools.
+Rather than a few large, complicated tools that do everything, UNIX is built out of a large set of specialized tools that do their jobs well.
+So too with SALVE, we have a tool that is not designed to fully satisfy every use case.
+Instead, it is designed to solve a single problem well, and therefore to be possible to integrate with other tools.</p>
+
+<p>One of the central design principles of this project is that an elegant system is a simple system.
+The configuration language is extremely limited in its syntax, but does not encode very much of its semantics in the grammar.
+Because the semantics are derived almost entirely from the choice of keywords, SALVE can be extended to support new uses almost trivially.</p>
+
+<h1>
+<a name="minimal-dependencies-and-assumptions" class="anchor" href="#minimal-dependencies-and-assumptions"><span class="octicon octicon-link"></span></a>Minimal Dependencies and Assumptions</h1>
+
+<p>Although Windows is not presently a target, the design is portable, and could be made to work with some, admittedly significant, effort.</p>
+
+<h2>
+<a name="salve-only-depends-on-what-the-manifests-use" class="anchor" href="#salve-only-depends-on-what-the-manifests-use"><span class="octicon octicon-link"></span></a>SALVE Only Depends on What the Manifests Use</h2>
+
+<p>SALVE does not rely on external tools like Debian's dpkg or OSX's MacPorts.
+Ultimately, all that's required is python2.7+, a working shell, and permissions to perform the operations requested in the Manifests.
+At present, these actions are restricted to those that are predefined, as we do not yet support arbitrary shell commands.</p>
+
+<p>SALVE does not use any python eggs or other packages, and attempts to depend more on python's extensive set of builtins than shell commands.
+For example, hashing is done with python's hashlib, rather than sha512sum, md5sum, and so forth.</p>
+
+<h2>
+<a name="salve-tries-to-keep-your-safe" class="anchor" href="#salve-tries-to-keep-your-safe"><span class="octicon octicon-link"></span></a>SALVE Tries to Keep Your Safe</h2>
+
+<p>SALVE does not assume that you can actually perform all of the actions you requested.
+The system may have broken permissions for some directories, or you may have made mistakes in your specification of manifests.
+Although SALVE is, technically, an interpreted language, the parser, variable expansion, and safety checks prior to execution attempt to be thorough in preventing calamities.</p>
+
+<p>The ultimate goal is to ensure, as much as possible, that the requested actions can be executed successfully.
+This includes validating acceptable values, and ensuring the effective UID grants sufficient permissions to perform actions.
+Ultimately, the burden is on you to ensure that your configuration is correct, but SALVE will do its best to detect and abort on errors pertaining to botched specifications prior to any part of the execution beginning.</p>
+
+
+
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/sirosen/SALVE/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/sirosen/SALVE/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/sirosen/SALVE"></a> is maintained by <a href="https://github.com/sirosen">sirosen</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
