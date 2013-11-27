@@ -2,4 +2,4 @@ safe: true
 lsi: false
 pygments: true
 source: /home/sirosen/SALVE/
-baseurl: ""
+baseurl: "http://sirosen.github.io/SALVE"
