@@ -19,10 +19,18 @@
   <body>
     <header>
       <div class="inner">
-        <h1>SALVE</h1>
+        <a href="https://sirosen.github.io/SALVE"><h1>SALVE</h1></a>
         <h2>Simple And Local Versioning Ecosystem</h2>
         <a href="https://github.com/sirosen/SALVE" class="button"><small>View project on</small>GitHub</a>
+
       </div>
+
+      <div class="inner">
+        <a href="https://sirosen.github.io/SALVE/html/why.html" class="linkbutton">Why Use SALVE?</a>
+        <a href="https://sirosen.github.io/SALVE/html/lang.html" class="linkbutton">The SALVE Language</a>
+        <a href="https://sirosen.github.io/SALVE/html/notes.html" class="linkbutton">Notes</a>
+      </div>
+
     </header>
 
     <div id="content-wrapper">
@@ -34,12 +42,6 @@
 <p>Authors: Stephen Rosen</p>
 
 <p>Version: 1.0.0</p>
-
-<a href="https://sirosen.github.io/SALVE/why" class="linkbutton">
-Why Use SALVE?
-</a><a href="https://sirosen.github.io/SALVE/lang" class="linkbutton">
-The SALVE Language
-</a>
 
 <h1>
 <a name="what-is-salve" class="anchor" href="#what-is-salve"><span class="octicon octicon-link"></span></a>What is SALVE?</h1>
@@ -69,33 +71,14 @@ Any manifest can be reasoned about as a sequential execution of commands.</p>
 
 <p>Ecosystem, because it is designed to manage configuration for any purpose on your system, ranging from personalized config files (bashrc, emacs config), to system wide properties (nginx site files, init scripts).</p>
 
-<h1>
-<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h1>
-
-<ul>
-<li>At present, path specifications do not support <code>~</code>, <code>*</code>, or any other special characters for globbing, path expansion, and so forth.</li>
-<li>The precedence order for values is naturally Specific Block &gt; Block Defaults &gt; Common Attributes, but this should be more clearly documented</li>
-<li>Current variable expansion does not support vars which expand to other vars. This should be changed.</li>
-<li>Screwing with the directory mode can create messy problems when writing to that dir. Recommend keeping mode umask for user as 7 for now.</li>
-<li>When overwriting a file, SALVE needs read access in order to hash it and back it up.</li>
-</ul><h2>
-<a name="my-thanks-for-design-input-from" class="anchor" href="#my-thanks-for-design-input-from"><span class="octicon octicon-link"></span></a>My Thanks for Design Input From</h2>
-
-<ul>
-<li>Bryce Allen</li>
-<li>Jeremy Archer</li>
-<li>Bryce Lanham</li>
-<li>Minke Zhang</li>
-</ul>
-
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/sirosen/SALVE/zipball/master" class="button">
+          <a href="https://github.com/sirosen/SALVE/zipball/stable" class="button">
             <small>Download</small>
             .zip file
           </a>
-          <a href="https://github.com/sirosen/SALVE/tarball/master" class="button">
+          <a href="https://github.com/sirosen/SALVE/tarball/stable" class="button">
             <small>Download</small>
             .tar.gz file
           </a>

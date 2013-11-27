@@ -158,27 +158,14 @@ aside a.button {
 }
 
 a.linkbutton {
-  line-height: 1.2;
+  line-height: 1.5;
   font-size: 23px;
-  color: #fff;
+  color: #841;
   padding-left: 22px;
   padding-top: 22px;
   margin-bottom: 22px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-}
-a.linkbutton small {
-  display: block;
-  font-size: 11px;
-}
-header a.linkbutton {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-aside a.linkbutton {
-  padding-left: 64px;
-  display: block;
-  font-size: 21px;
+  text-decoration: underline
 }
 
 code, pre {
