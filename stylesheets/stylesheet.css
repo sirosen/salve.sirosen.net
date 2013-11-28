@@ -97,7 +97,8 @@ header h2 {
 
 .footernote {
   float: right;
-  padding-right: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
   font-size: 12px;
 }
 
@@ -163,15 +164,16 @@ aside a.button {
   font-size: 21px;
 }
 
-a.linkbutton {
+header a.linkbutton {
   line-height: 2.5;
   font-size: 22px;
   color: #FFD700;
-  padding-left: 22px;
-  padding-top: 22px;
+  margin-left: 11px;
+  margin-right: 11px;
+  margin-top: 22px;
   margin-bottom: 22px;
   font-family: Helvetica, Arial, serif;
-  text-decoration: underline
+  border-bottom: dotted 2px #CCCCFF;
 }
 
 code, pre {
