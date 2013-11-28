@@ -250,36 +250,88 @@ For example, <code>file[action]</code> specifies the 'action' attribute of 'file
 <p>'directory[backup_log]' -- The path to the file to which backup actions are logged (date, hash, full path to file)</p>
 </blockquote>
 
-<h2>
-<a name="sensible-defaults" class="anchor" href="#sensible-defaults"><span class="octicon octicon-link"></span></a>Sensible Defaults</h2>
+<h2><a name="common-attributes" class="anchor" href="#common-attributes"><span class="octicon octicon-link"></span></a>Common Attributes</h2>
+
+<p>Common attributes are attributes shared by all blocks.
+They are specified in the default settings, and apply to all blocks uniformly.
+A future feature on the roadmap is the ability of a manifest block to specify overrides to common attributes for its descendants.</p>
+
+
+<h2><a name="sensible-defaults" class="anchor" href="#sensible-defaults"><span class="octicon octicon-link"></span></a>Sensible Defaults</h2>
 
 <p>As much as possible, SALVE attempts to define all behavior on underspecified blocks.
-These are our set of "sensible defaults", specified below in the format of a manifest.
-A small class of values, when unspecified, result in errors.
-These are generally the variables that refer to paths.</p>
+These are our set of "sensible defaults", and they are specified in ini files.</p>
 
-<p>There is a special set of attributes, specified as "common" in the default settings, which describe values shared by all blocks unless explicitly overridden.</p>
+<p>A small class of attributes, when unspecified, result in errors.
+Generally these are variables that refer to paths.
+By specifying default values, SALVE replaces failure conditions with default behaviors that are understandable and even reliable.</p>
 
-<pre><code>common {
-    backup_dir  $HOME/.salve/backups
-    backup_log  $HOME/.salve/backup.log
-    backup_log
-}
+<h3><a name="defaults-ini" class="anchor" href="#defaults-ini"><span class="octicon octicon-link"></span></a>Defaults ini Format</h3>
 
-file {
-    mode    600
-    user    $USER
-    group   $SALVE_USER_PRIMARY_GROUP
-    action  copy
-}
+<p>The ini file is applied to blocks based on simple matching rules.
+Consider this ini file, which is the default for SALVE.</p>
 
-directory {
-    mode    755
-    user    $USER
-    group   $SALVE_USER_PRIMARY_GROUP
-    action  copy
-}
+<pre><code>[common]
+backup_dir=$HOME/.salve/backups
+backup_log=$HOME/.salve/backup.log
 
-manifest {
-}
+[file]
+mode=600
+user=$USER
+group=$SALVE_USER_PRIMARY_GROUP
+action=copy
+
+[directory]
+mode=755
+user=$USER
+group=$SALVE_USER_PRIMARY_GROUP
+action=copy
+
+[manifest]
 </code></pre>
+
+<p>This specifies that the common attributes <code>backup_dir</code> and <code>backup_log</code> should be applied to all blocks with the values <code>$HOME/.salve/backups</code> and <code>$HOME/.salve/backup.log</code> respectively.
+Similarly, all file blocks should have a <code>mode</code> of <code>600</code>, and so forth.</p>
+
+
+<h2><a name="attribute-precedence" class="anchor" href="#attribute-precedence"><span class="octicon octicon-link"></span></a>Attribute Precedence</h2>
+
+<p>There are numerous locations at which the attribute value of a block can be specified.
+Here we lay out the precedence order for attributes.
+This should be mostly intuitive, as the most tightly scoped value is always taken.</p>
+
+<p>A value specified in a block always takes precedence.
+If a block has an attribute assigned in its declaration, that value is used no matter what the surrounding configuration state is.
+Remember that this does not always guarantee the same behavior.
+For example, multiple invocations the same file block that uses relative paths may have different base paths, and therefore different meanings.</p>
+
+<p>Any ini file attributes specific to a block type take precedence over common attributes.
+That is, given the ini file below,</p>
+
+<pre><code>[common]
+a=1
+[file]
+a=2
+</code></pre>
+
+<p>All file blocks will have <code>a</code> set to <code>2</code> unless locally overridden.
+Only non-file blocks will see the common attribute value of <code>1</code>.</p>
+
+<p>The precedence of ini files is Command Line Specified, then <code>$HOME/.salverc</code>, and finally <code>$SALVE_ROOT/default_settings.ini</code>.
+If an ini file is given in the commandline, it takes precedence over all other files, and so forth.
+The <code>salverc</code> is therefore a good way of applying overrides that apply to a specific system.
+For example, I might maintain a default_settings.ini that looks something like this:</p>
+
+<pre><code>[file]
+user=sirosen
+group=sirosen
+</code></pre>
+
+<p>If there is a machine on which I am not the administrator, and my primary group on that machine is <code>developers</code>, then I might want to add a salverc with the following content:</p>
+
+<pre><code>[file]
+group=developers
+</code></pre>
+
+<p>All of my other attribute specifications in the default settings file are still used, but I have overridden the <code>file[group]</code> on the machine.
+In this way, overrides allow me to preserve my settings while maintaining system-specific configuration.</p>
