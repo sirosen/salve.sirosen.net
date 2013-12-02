@@ -155,98 +155,100 @@ For example, <code>file[action]</code> specifies the 'action' attribute of 'file
 
 <h3>
 <a name="fileaction" class="anchor" href="#fileaction"><span class="octicon octicon-link"></span></a>file[action]</h3>
+<p>Specifies what the file block does.</p>
 
-<blockquote>
-<p>'file[action]=copy' -- The copy action copies 'file[source]' to 'file[target]'</p>
+<ul>
+<li><p><code>file[action]=copy</code><br />
+The copy action copies <code>file[source]</code> to <code>file[target]</code></p></li>
 
-<p>'file[action]=create' -- The create action touches 'file[target]'</p>
-</blockquote>
+<li><p><code>file[action]=create</code><br />
+The create action touches <code>file[target]</code></p></li>
+</ul>
 
 <h3>
 <a name="filemode" class="anchor" href="#filemode"><span class="octicon octicon-link"></span></a>file[mode]</h3>
-
-<blockquote>
-<p>'file[mode]' -- This is the umask for UGO permissions on the created file</p>
-</blockquote>
+<p>Is the umask (given in the typical octal notation) to be set on the file specified by <code>file[target]</code>.</p>
 
 <h3>
 <a name="fileuser-filegroup" class="anchor" href="#fileuser-filegroup"><span class="octicon octicon-link"></span></a>file[user], file[group]</h3>
+<p>These are set via chmod whenever SALVE is invoked as root.
+Otherwise, they do nothing.</p>
 
-<blockquote>
-<p>'file[user]' -- The owner of the created file</p>
+<ul>
+<li><p><code>file[user]</code><br />
+The owner of <code>file[target]</code>.</p></li>
 
-<p>'file[group]' -- The owning group of the created file
-</blockquote>
-<small>Note that these attributes are ignored when salve is not run as root, since chowns cannot necessarily be applied.</small>
+<li><p><code>file[group]</code><br />
+The owning group of <code>file[target]</code>.</p></li>
+</ul>
 
 <h3>
 <a name="filesource-filetarget" class="anchor" href="#filesource-filetarget"><span class="octicon octicon-link"></span></a>file[source], file[target]</h3>
-
-<blockquote>
-<p>'file[source]' -- The path to the file to be used, typically versioned in the configuration repo</p>
-
-<p>'file[target]' -- The path to the file to which an action will be applied, or which will be created or destroyed</p>
-</blockquote>
+<p>The paths to files specified by the block.
+Typically the target is a location on the filesystem being configured, and the source is a file versioned in the SALVE repository being used to modify the target.</p>
 
 <h3>
 <a name="filebackup_dir-filebackup_log" class="anchor" href="#filebackup_dir-filebackup_log"><span class="octicon octicon-link"></span></a>file[backup_dir], file[backup_log]</h3>
+<p>The backup_dir holds backups of any files that have destructive operations performed on them by the block.
+The backup_log records all backups that are performed.</p>
 
-<blockquote>
-<p>'file[backup_dir]' -- The path to the directory in which file backups are stored</p>
+<ul>
+<li><p><code>file[backup_dir]</code><br />
+The path to the directory in which file backups are stored</p></li>
 
-<p>'file[backup_log]' -- The path to the file to which backup actions are logged (date, hash, full path to file)</p>
-</blockquote>
+<li><p><code>file[backup_log]</code><br />
+The path to the file to which backup actions are logged (date, hash, full path to file)</p></li>
+</ul>
 
 <h3>
 <a name="manifestsource" class="anchor" href="#manifestsource"><span class="octicon octicon-link"></span></a>manifest[source]</h3>
-
-<blockquote>
-<p>'manifest[source]' -- The path to the manifest to be expanded and executed at this location in the manifest tree</p>
-</blockquote>
+<p>The path to the manifest that is expanded at this location.</p>
 
 <h3>
 <a name="directoryaction" class="anchor" href="#directoryaction"><span class="octicon octicon-link"></span></a>directory[action]</h3>
 
-<blockquote>
-<p>'directory[action]=create' -- Create the directory at 'directory[target]', and any required ancestors</p>
-
-<p>'directory[action]=copy' -- Create the directory at 'directory[target]', and then recursively copy contents from 'directory[source]' to 'directory[target]'</p>
-</blockquote>
+<ul>
+<li><p><code>directory[action]=create</code><br />
+Create the directory at <code>directory[target]</code>, and any required ancestors</p></li>
+<li><p><code>directory[action]=copy</code><br />
+Create the directory at <code>directory[target]</code>, and then recursively copy contents from <code>directory[source]</code> to <code>directory[target]</code></p></li>
+</ul>
 
 <h3>
 <a name="directorymode" class="anchor" href="#directorymode"><span class="octicon octicon-link"></span></a>directory[mode]</h3>
-
-<blockquote>
-<p>'directory[mode]' -- This is the umask for UGO permissions on the created directory</p>
-</blockquote>
+<p>Is the umask (given in the typical octal notation) to be set on the directory specified by <code>directory[target]</code>.</p>
 
 <h3>
 <a name="directoryuser-directorygroup" class="anchor" href="#directoryuser-directorygroup"><span class="octicon octicon-link"></span></a>directory[user], directory[group]</h3>
+<p>These are set via chmod whenever SALVE is invoked as root.
+Otherwise, they do nothing.</p>
 
-<blockquote>
-<p>'directory[user]' -- The owner of the created directory</p>
+<ul>
+<li><p><code>directory[user]</code><br />
+The owner of <code>directory[target]</code>.</p></li>
 
-<p>'directory[group]' -- The owning group of the created directory</p>
-</blockquote>
-<small>Note that these attributes are ignored when salve is not run as root, since chowns cannot necessarily be applied.</small>
+<li><p><code>file[group]</code><br />
+The owning group of <code>directory[target]</code>.</p></li>
+</ul>
 
 <h3>
 <a name="directorysource-directorytarget" class="anchor" href="#directorysource-directorytarget"><span class="octicon octicon-link"></span></a>directory[source], directory[target]</h3>
-
-<blockquote>
-<p>'directory[source]' -- The path to the directory to be used, typically versioned in the configuration repo</p>
-
-<p>'directory[target]' -- The path to the directory to which an action will be applied, or which will be created or destroyed</p>
-</blockquote>
+<p>The paths to directories specified by the block.
+Typically the target is a location on the filesystem being configured, and the source is a directory versioned in the SALVE repository being used to modify the target.
+When only one path exists, it is typically the target.</p>
 
 <h3>
 <a name="directorybackup_dir-directorybackup_log" class="anchor" href="#directorybackup_dir-directorybackup_log"><span class="octicon octicon-link"></span></a>directory[backup_dir], directory[backup_log]</h3>
+<p>The backup_dir holds backups of any files that have destructive operations performed on them by the block.
+The backup_log records all backups that are performed.</p>
 
-<blockquote>
-<p>'directory[backup_dir]' -- The path to the directory in which file backups are stored</p>
+<ul>
+<li><p><code>file[backup_dir]</code><br />
+The path to the directory in which file backups are stored</p></li>
 
-<p>'directory[backup_log]' -- The path to the file to which backup actions are logged (date, hash, full path to file)</p>
-</blockquote>
+<li><p><code>file[backup_log]</code><br />
+The path to the file to which backup actions are logged (date, hash, full path to file)</p></li>
+</ul>
 
 <h2><a name="common-attributes" class="anchor" href="#common-attributes"><span class="octicon octicon-link"></span></a>Common Attributes</h2>
 
