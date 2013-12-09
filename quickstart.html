@@ -18,16 +18,22 @@ This will create a new fork, in which you can start placing your own configurati
 
 <h2><a name="fork-manual" class="anchor" href="#fork-manual"><span class="octicon octicon-link"></span></a>... Or Fork Manually</h2>
 
-<p>If you don't use GitHub or don't like it's forking utility, you can always do this by cloning the SALVE repo by running
-<code>git clone https://github.com/sirosen/SALVE my-config</code>
-where "my-config" is the name you want to give to your local fork.
+<p>If you don't use GitHub or don't like it's forking utility, you can always do this by cloning the SALVE repo by running</p>
+
+<pre><code>git clone https://github.com/sirosen/SALVE my-config</code></pre>
+
+<p>where "my-config" is the name you want to give to your local fork.
 Push this to any remotes you like to use; Bitbucket, GitHub, and other free git servers are recommended.</p>
 
 <h2><a name="fork-add-upstream" class="anchor" href="#fork-add-upstream"><span class="octicon octicon-link"></span></a>Add 'upstream' to Fork</h2>
 
 <p>Whatever method you chose to fork the repository, you should add a remote to at least one of your copies of it pointing to the GitHub SALVE repository.
 The name 'upstream' is common among git users, so we will assume that is the name you choose.
-Run <code>git remote add upstream https://github.com/sirosen/SALVE.git</code> to add the 'upstream' remote.</p>
+Run</p>
+
+<pre><code>git remote add upstream https://github.com/sirosen/SALVE.git</code></pre>
+
+<p>to add the 'upstream' remote.</p>
 
 <p>The great advantage of adding upstream is that you can periodically pull in changes to SALVE.
 Either a specific release can be specified, as in <code>git pull upstream 1.0.1</code>, or you can pull the latest version with <code>git pull upstream stable</code>.
@@ -41,7 +47,9 @@ Pulling in changes directly from dev is strong dis-recommended.</p>
 <p>First, add your bashrc file to your repository.
 It is good practice to keep your files separate from the SALVE source and tests, to avoid merge conflicts with the upstream versions.
 A top-level 'files' directory is a good choice.
-In your shell, inside of the repository root, <code>mkdir -p files/bash; cp ~/.bashrc files/bash/bashrc</code>.</p>
+In your shell, inside of the repository root,</p>
+<pre><code>mkdir -p files/bash
+cp ~/.bashrc files/bash/bashrc</code></pre>
 
 <p>Now, add a <i>manifest</i>, metaconfiguration that describes where the bashrc file goes on your system, that describes this bashrc.</p>
 
