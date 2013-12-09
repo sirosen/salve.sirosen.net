@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+<p>This quick-start guide is designed to get you up and running as quickly as possible.
+It gives only the most cursory explanation of SALVE is targetted at those who like to teach themselves and learn from examples.</p>
+
+<h1><a name="fork" class="anchor" href="#fork"><span class="octicon octicon-link"></span></a>Step 1: Fork SALVE</h1>
+
+<p>The recommended way to use SALVE is to fork it and layer your own configuration on top of it.
+By doing this, it becomes possible to pull in upstream changes from the stable branch of SALVE.</p>
+
+<h2><a name="fork-with-github" class="anchor" href="#fork-with-github"><span class="octicon octicon-link"></span></a>Fork With GitHub</h2>
+
+<p>The easiest way to fork SALVE is to use GitHub's built-in forking utilities.
+Navigate to SALVE's page on GitHub, using the button in the upper-right corner of this page, and click the "Fork" button.
+This will create a new fork, in which you can start placing your own configuration.</p>
+
+<h2><a name="fork-manual" class="anchor" href="#fork-manual"><span class="octicon octicon-link"></span></a>... Or Fork Manually</h2>
+
+<p>If you don't use GitHub or don't like it's forking utility, you can always do this by cloning the SALVE repo by running
+<code>git clone https://github.com/sirosen/SALVE my-config</code>
+where "my-config" is the name you want to give to your local fork.
+Push this to any remotes you like to use; Bitbucket, GitHub, and other free git servers are recommended.</p>
+
+<h2><a name="fork-add-upstream" class="anchor" href="#fork-add-upstream"><span class="octicon octicon-link"></span></a>Add 'upstream' to Fork</h2>
+
+<p>Whatever method you chose to fork the repository, you should add a remote to at least one of your copies of it pointing to the GitHub SALVE repository.
+The name 'upstream' is common among git users, so we will assume that is the name you choose.
+Run <code>git remote add upstream https://github.com/sirosen/SALVE.git</code> to add the 'upstream' remote.</p>
+
+<p>The great advantage of adding upstream is that you can periodically pull in changes to SALVE.
+Either a specific release can be specified, as in <code>git pull upstream 1.0.1</code>, or you can pull the latest version with <code>git pull upstream stable</code>.
+If you like to live on the bleeding edge, <code>git pull upstream dev</code> is available, and may have newer features than stable, but it is not guaranteed to work correctly.
+Pulling in changes directly from dev is strong dis-recommended.</p>
+
+<h1><a name="add-bashrc" class="anchor" href="#add-bashrc"><span class="octicon octicon-link"></span></a>Step 2: Add Your Bashrc</h1>
+
+<p>These steps work with any file of your choice, but your bashrc is a good example of a file that should be managed with SALVE.</p>
+
+<p>First, add your bashrc file to your repository.
+It is good practice to keep your files separate from the SALVE source and tests, to avoid merge conflicts with the upstream versions.
+A top-level 'files' directory is a good choice.
+In your shell, inside of the repository root, <code>mkdir -p files/bash; cp ~/.bashrc files/bash/bashrc</code>.</p>
+
+<p>Now, add a <i>manifest</i>, metaconfiguration that describes where the bashrc file goes on your system, that describes this bashrc.</p>
+
+<pre><code>echo "file {
+source files/bash/bashrc
+target $HOME/.bashrc
+action copy
+}" > bash.manifest</pre></code>
+
+<p>Finally, add these files to your git repository.
+<code>git commit -am "Adding bashrc and bash manifest."</code>
+Push to any remotes you use, and you are now ready to deploy your bashrc with SALVE.</p>
+
+<h1><a name="deploy" class="anchor" href="#deploy"><span class="octicon octicon-link"></span></a>Step 3: Deploy</h1>
+
+<p>The final step is to deploy your bashrc using SALVE.
+Since SALVE automagically backs up files that it overwrites, you can always recover the older bashrc file after you deploy.
+On a machine that you want to deploy your managed bashrc to, ensure that you have python 2.7 or later and run</p>
+
+<pre><code>git clone https://my-remote/my-config
+./my-config/salve.py my-config/bash.manifest</code></pre>
+
+<p>SALVE will take care of the rest.
+If you ever need to recover from the backups, they should be located in <code>$HOME/.salve/backups</code> and logged in <code>$HOME/.salve/backup.log</code>.</p>
