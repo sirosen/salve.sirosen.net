@@ -6,26 +6,54 @@ layout: default
 <a name="why-salve" class="anchor" href="#why-salve"><span class="octicon octicon-link"></span></a>Why SALVE?</h1>
 
 <p>SALVE is designed to make your life easier, not harder, your configuration simpler, not more complicated, and to let you do it YOUR way, no matter how right or wrong your way might be.
-The primary motivation is a confluence of two major factors: versioned configuration is good and configuration management systems are too complicated.</p>
+The primary motivation is a confluence of two major factors: versioned configuration is good and configuration management systems are complicated.</p>
 
 <h2>
-<a name="the-server-node-architecture-is-sometimes-overcomplicated" class="anchor" href="#the-server-node-architecture-is-sometimes-overcomplicated"><span class="octicon octicon-link"></span></a>The Server-Node Architecture is Sometimes Overcomplicated</h2>
+<a name="chef-and-puppet-are-complicated" class="anchor" href="#chef-and-puppet-are-complicated"><span class="octicon octicon-link"></span></a>Chef and Puppet are Very Complicated</h2>
 
-<p>Most configuration management software works around the notion of a configuration management server which polls and modifies nodes.
-This complicates the core task of managing configuration on an individual machine with logic relating to the interaction between the server and the managed nodes.</p>
+<p>At present, there are two prominent, highly complex tools to manage configuration on servers: Chef and Puppet.
+For those unfamiliar with these tools, the following is a list of key concepts and components in Chef:
+<ul>
+<li>Nodes</li>
+<li>Clients</li>
+<li>Environments</li>
+<li>Roles</li>
+<li>Run Lists</li>
+<li>(Encrypted) Data Bags</li>
+<li>Cookbooks</li>
+<li>Recipes</li>
+<li>Libraries</li>
+<li>LWRPs</li>
+<li>Attributes</li>
+<li>Ohai</li>
+<li>chef-client</li>
+<li>chef-server</li>
+<li>Knife</li>
+<li>Ruby DSLs</li>
+</ul>
+</p>
 
-<p>Furthermore, with Puppet, Chef, and similar tools, the capacity for node introspection makes knowing what will happen on deployment very hard.
-Machines can ask questions "Am I listed as a 'web-server'? Am I in the 'nagios-monitored' group?" and dispatch on the answers.</p>
+<p>This software works around the notion of a configuration management server which polls and modifies nodes.
+This complicates the core task of managing configuration on an individual machine with logic relating to the interaction between the server and the managed nodes, and synchronizing information correctly and consistently between them.
+Furthermore, the capacity for node introspection makes knowing what will happen on deployment very hard.
+Machines can ask questions "Am I listed as a 'web-server'? Am I in the 'nagios-monitored' group?" and choose different components based on the answers.</p>
 
-<p>With SALVE, you instead keep a version controlled directory of configuration, and manage it as you see fit.
-It is recommended to do this using one of the large free git server providers like GitHub.
-When you want to deploy on a node, all you need to do to know how a deployment will run is ensure that the local repository is up-to-date.
-This dramatically simplified approach is much more suitable to personal configuration, and may even be appropriate for some small-scale Ops.</p>
+<p>For contrast, here is the list of SALVE's core concepts and tools:
+<ul>
+<li>SALVE Language</li>
+<li>SALVE CLI</li>
+<li>Environment Variables</li>
+</ul>
+</p>
+
+<p>With SALVE, you keep a version controlled directory of configuration files in the state that you want them, and write in a DSL (the SALVE Language) to deploy them.
+When you want to deploy on a machine, all you need to know in order to deduce how a deployment will run is the state that the local repository is in.
+This dramatically simplified approach is much more suitable to personal configuration.</p>
 
 <h2>
 <a name="goal-oriented-systems-are-hard-to-understand" class="anchor" href="#goal-oriented-systems-are-hard-to-understand"><span class="octicon octicon-link"></span></a>Goal-Oriented Systems are Hard to Understand</h2>
 
-<p>Furthermore, almost all of the server-node based systems are "goal oriented".
+<p>Many of the server-node based systems are "goal oriented".
 Rather than listing a set of commands, they try to describe the desired state of the system, and then put it in that state.
 This makes it hard to understand the flow of execution, especially in the presence of errors.</p>
 
@@ -49,8 +77,6 @@ Because the semantics are derived almost entirely from the choice of keywords, S
 
 <h1>
 <a name="minimal-dependencies-and-assumptions" class="anchor" href="#minimal-dependencies-and-assumptions"><span class="octicon octicon-link"></span></a>Minimal Dependencies and Assumptions</h1>
-
-<p>Although Windows is not presently a target, the design is portable, and could be made to work with some, admittedly significant, effort.</p>
 
 <h2>
 <a name="salve-only-depends-on-what-the-manifests-use" class="anchor" href="#salve-only-depends-on-what-the-manifests-use"><span class="octicon octicon-link"></span></a>SALVE Only Depends on What the Manifests Use</h2>
