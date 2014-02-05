@@ -299,7 +299,7 @@ Similarly, all file blocks should have a <code>mode</code> of <code>600</code>, 
 Here we lay out the precedence order for attributes.
 This should be mostly intuitive, as the most tightly scoped value is always taken.</p>
 
-<p>A value specified in a block always takes precedence.
+<p>A value specified in a block takes precedence over anything other than a global.
 If a block has an attribute assigned in its declaration, that value is used no matter what the surrounding configuration state is.
 Remember that this does not always guarantee the same behavior.
 For example, multiple invocations the same file block that uses relative paths may have different base paths, and therefore different meanings.</p>
