@@ -70,7 +70,7 @@ Since SALVE automagically backs up files that it overwrites, you can always reco
 On a machine that you want to deploy your managed bashrc to, ensure that you have python 2.7 or later and run</p>
 
 <pre><code>git clone https://my-remote/my-config
-./my-config/salve.py my-config/bash.manifest</code></pre>
+./my-config/salve.py deploy -m my-config/bash.manifest</code></pre>
 
 <p>SALVE will take care of the rest.
 If you ever need to recover from the backups, they should be located in <code>$HOME/.salve/backups</code> and logged in <code>$HOME/.salve/backup.log</code>.</p>

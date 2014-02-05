@@ -5,7 +5,7 @@ layout: default
 <p>To understand how a SALVE execution runs, here we present several examples and describe how an execution with them runs.</p>
 
 <p>All examples are evaluated with the following <code>default_settings.ini</code>:</p>
-<pre><code>[common]
+<pre><code>[global]
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 
@@ -65,7 +65,7 @@ This is (aside from the empty manifest) about as simple as a manifest can be.</p
 
 <h2><a name="bash-expanded" class="anchor" href="#bash-expanded"><span class="octicon octicon-link"></span></a>bash Manifest Expanded</h2>
 
-<p>When run via <code>./salve -m manifests/bash.manifest</code>, this manifest expandds with the defaults to</p>
+<p>When run via <code>./salve.py deploy -m manifests/bash.manifest</code>, this manifest expandds with the defaults to</p>
 
 <pre><code>file {
     source      files/bash/bashrc
@@ -115,7 +115,7 @@ file {
 
 <h2><a name="zsh-first-block" class="anchor" href="#zsh-first-block"><span class="octicon octicon-link"></span></a>zsh Manifest: First Block</h2>
 
-<p>When run via <code>./salve -m manifests/zsh.manifest</code>, this manifest first specifies</p>
+<p>When run via <code>./salve.py deploy -m manifests/zsh.manifest</code>, this manifest first specifies</p>
 
 <pre><code>file {
     source  files/zsh/zshrc
@@ -220,7 +220,7 @@ file {
 
 <h2><a name="vim-first-block" class="anchor" href="#vim-first-block"><span class="octicon octicon-link"></span></a>vim Manifest: First Block</h2>
 
-<p>When run via <code>./salve -m manifest/vim.manifest</code>, this manifest first specifies</p>
+<p>When run via <code>./salve.py deploy -m manifest/vim.manifest</code>, this manifest first specifies</p>
 
 <pre><code>directory {
     target  $HOME/.vim/colors
