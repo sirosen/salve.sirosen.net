@@ -1,0 +1,118 @@
+---
+layout: default
+---
+
+<h1>
+<a name="salve-attributes" class="anchor" href="#salve-attributes"><span class="octicon octicon-link"></span></a>SALVE Attributes, Precedence, and Config Files</h1>
+
+<p>In what order do variables override one another?
+How do I specify machine-specific configuration and apply it globally to a manifest tree?
+Here we describe the configuration files, their order of application, and the behavior of blocks with respect to these.</p>
+
+
+<h2><a name="global-attributes" class="anchor" href="#global-attributes"><span class="octicon octicon-link"></span></a>Global Attributes</h2>
+
+<p>Global attributes are attributes shared by all blocks.
+They are specified in the default settings, and apply to all blocks uniformly.</p>
+
+
+<h2><a name="sensible-defaults" class="anchor" href="#sensible-defaults"><span class="octicon octicon-link"></span></a>Sensible Defaults</h2>
+
+<p>As much as possible, SALVE attempts to define all behavior on underspecified blocks.
+These are our set of "sensible defaults", and they are specified in ini files.</p>
+
+<p>A small class of attributes, when unspecified, result in errors.
+Generally these are variables that refer to paths.
+By specifying default values, SALVE replaces failure conditions with default behaviors that are understandable and even reliable.</p>
+
+<h3><a name="defaults-ini" class="anchor" href="#defaults-ini"><span class="octicon octicon-link"></span></a>Defaults ini Format</h3>
+
+<p>The ini file is applied to blocks based on simple matching rules.
+Consider this ini file, which is the default for SALVE.</p>
+
+<pre><code>[global]
+backup_dir=$HOME/.salve/backups
+backup_log=$HOME/.salve/backup.log
+
+[file]
+mode=600
+user=$USER
+group=$SALVE_USER_PRIMARY_GROUP
+action=copy
+
+[directory]
+mode=755
+user=$USER
+group=$SALVE_USER_PRIMARY_GROUP
+action=copy
+
+[manifest]
+</code></pre>
+
+<p>This specifies that the global attributes <code>backup_dir</code> and <code>backup_log</code> should be applied to all blocks with the values <code>$HOME/.salve/backups</code> and <code>$HOME/.salve/backup.log</code> respectively.
+Similarly, all file blocks should have a <code>mode</code> of <code>600</code>, and so forth.</p>
+
+
+<h2><a name="attribute-precedence" class="anchor" href="#attribute-precedence"><span class="octicon octicon-link"></span></a>Attribute Precedence</h2>
+
+<p>There are numerous locations at which the attribute value of a block can be specified.
+Here we lay out the precedence order for attributes.
+This should be mostly intuitive, as the most tightly scoped value is always taken, with the exception of global overrides.
+The entirety of this can be summarized as <code>global &gt; block specific &gt; block default &gt; default</code>.</p>
+
+
+<h3><a name="global-attribute-precedence" class="anchor" href="#global-attribute-precedence"><span class="octicon octicon-link"></span></a>Global Attributes</h3>
+
+<p>Global attributes have the highest precedence level.
+Any attribute assignation in a block's section of the config, or in a single block, will be replaced with a global attribute.
+As a result, global attributes should only be specified with great care, and are well suited to values pertaining to backups and other immutable shared settings.</p>
+
+<h3><a name="block-attribute-precedence" class="anchor" href="#block-attribute-precedence"><span class="octicon octicon-link"></span></a>Block Specific Attributes</h3>
+
+<p>A value specified in a block takes precedence over anything other than a global.
+If a block has an attribute assigned in its declaration, that value is used no matter what the surrounding configuration state is.
+Remember that this does not always guarantee the same behavior.
+For example, multiple invocations the same file block that uses relative paths may have different base manifests, and therefore different meanings.</p>
+
+<h3><a name="block-section-attribute-precedence" class="anchor" href="#block-section-attribute-precedence"><span class="octicon octicon-link"></span></a>Block Attributes</h3>
+
+<p>Any ini file attributes specific to a block type act as the default values for that block.
+For example, if the config specifies a default value of <code>a=1</code> for <code>file</code> blocks, then all file blocks that do not specify <code>a</code> will share this value.
+This applies unless there is a global setting for <code>a</code>, which would override any block-specific attribute.</p>
+
+<h3><a name="default-section-attribute-precedence" class="anchor" href="#default-section-attribute-precedence"><span class="octicon octicon-link"></span></a>Default Attributes</h3>
+
+<p>Default attributes have the lowest precedence level.
+Defaults are only used when no other attributes apply.</p>
+
+<h2><a name="configfile-precedence" class="anchor" href="#configfile-precedence"><span class="octicon octicon-link"></span></a>Config File Precedence</h2>
+
+<p>The precedence of ini files is Command Line Specified, then <code>$HOME/.salverc</code>, and finally <code>$SALVE_ROOT/default_settings.ini</code>.
+If an ini file is given in the commandline, it takes precedence over all other files, and so forth: all of these config files are loaded and inspected, overriding one another in order.
+The <code>salverc</code> is therefore a good way of applying overrides that apply to a specific system.
+For example, I might maintain a default_settings.ini that looks something like this:</p>
+
+<pre><code>[file]
+user=sirosen
+group=sirosen
+</code></pre>
+
+<p>If there is a machine on which I am not the administrator, and my primary group on that machine is <code>developers</code>, then I might want to add a salverc with the following content:</p>
+
+<pre><code>[file]
+group=developers
+</code></pre>
+
+<p>All of my other attribute specifications in the default settings file are still used, but I have overridden the <code>file[group]</code> on the machine.
+In this way, overrides allow me to preserve my settings while maintaining system-specific configuration.</p>
+
+<h3><a name="environment-variable-precedence" class="anchor" href="#environment-variable-precedence"><span class="octicon octicon-link"></span></a>Environment Variable Precedence</h3>
+
+<p>Environment variables can be used to override the values found in config files.
+They have a higher precedence level than any configuration files.</p>
+
+<p>The correct form for an environment override is <code>SALVE_&lt;section&gt;_&lt;attribute&gt;</code>.
+This applies an override to the specified attribute in the specified section of the config, so the <code>SALVE_GLOBAL_BACKUP_LOG</code> environment attribute specifies the value for the <code>backup_log</code> attribute of the <code>global</code> section.</p>
+
+<p>If multiple configfile attributes are matched by the same environment variable, they are all overridden with its value.
+At present, block and attribute names are chosen carefully to make sure that this is never the case, but in the future, this invariant may be violated.</p>
