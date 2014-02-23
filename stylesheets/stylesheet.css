@@ -195,7 +195,7 @@ aside a.button.github {
   background: transparent url(../images/bgs/github-button.png) 0 0 no-repeat;
 }
 
-header a.linkbutton {
+header linksection a.linkbutton {
   line-height: 2.5;
   font-size: 22px;
   color: #FFD700;
@@ -205,6 +205,10 @@ header a.linkbutton {
   margin-bottom: 22px;
   font-family: Helvetica, Arial, serif;
   border-bottom: dotted 2px #CCCCFF;
+}
+
+header linksection.linksubsection a.linkbutton {
+  font-size: 18px;
 }
 
 code, pre {
