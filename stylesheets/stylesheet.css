@@ -162,7 +162,6 @@ header a.button {
   position: absolute;
   right: 0;
   top: 0;
-  vertical-align: middle;
   border-style: solid;
   border-width: 3px;
 }
@@ -175,16 +174,12 @@ aside a.button {
   margin-bottom: 20px;
   font-size: 21px;
 }
-aside a.github-button small {
+
+aside a.button.github small {
   display: block;
   font-size: 11px;
 }
-aside a.github-button {
-  width: 138px;
-  padding-left: 64px;
-  display: block;
-  margin-bottom: 20px;
-  font-size: 21px;
+aside a.button.github {
   background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
 
