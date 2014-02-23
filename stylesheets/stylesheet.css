@@ -152,22 +152,21 @@ a.button {
   width: 134px;
   height: 58px;
   line-height: 1.2;
-  font-size: 23px;
+  font-size: 24px;
   color: #fff;
-  padding-left: 68px;
   padding-top: 22px;
-  font-family: 'Allerta', 'Helvetica Neue', Helvetica, Arial, serif; 
+  font-family: 'Allerta', 'Helvetica Neue', Helvetica, Arial, serif;
 }
-a.button small {
-  display: block;
-  font-size: 11px;
-}
+
 header a.button {
   position: absolute;
   right: 0;
   top: 0;
-  background: transparent url(../images/github-button.png) 0 0 no-repeat;
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 3px;
 }
+
 aside a.button {
   width: 138px;
   padding-left: 64px;
@@ -175,6 +174,18 @@ aside a.button {
   background: transparent url(../images/download-button.png) 0 0 no-repeat;
   margin-bottom: 20px;
   font-size: 21px;
+}
+aside a.github-button small {
+  display: block;
+  font-size: 11px;
+}
+aside a.github-button {
+  width: 138px;
+  padding-left: 64px;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 21px;
+  background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
 
 header a.linkbutton {
