@@ -418,6 +418,11 @@ footer a:hover {
   header h1 {
     font-size: 60px;
   }
+  header img {
+    height: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
   header h2 {
     font-size: 30px;
   }
@@ -456,6 +461,11 @@ footer a:hover {
   header h1 {
     font-size: 48px;
   }
+  header img {
+    height: 48px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
   header h2 {
     font-size: 24px;
   }
@@ -476,8 +486,8 @@ footer a:hover {
     background-color: #9ddcff;
     color: #2879d0;
     -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;                     
-    border-radius: 5px;    
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
   }
   header a.button small {
     font-size: 13px;
