@@ -51,7 +51,7 @@
       <a href="http://sirosen.github.io" class="button">About the Author</a>
     </div>
 
-    <div class="inner">
+    <div class="inner linksection">
       <a href="{{site.baseurl}}why.html" class="linkbutton">Why Use SALVE?</a>
       <a href="{{site.baseurl}}quickstart.html" class="linkbutton">Quick Start Guide</a>
       <a href="{{site.baseurl}}examples.html" class="linkbutton">Examples</a>
@@ -59,6 +59,10 @@
       <a href="{{site.baseurl}}attributes.html" class="linkbutton">Attributes &amp; Language Mechanics</a>
       <a href="{{site.baseurl}}notes.html" class="linkbutton">Notes</a>
     </div>
+
+    {% if include.sublinks != 'no_sublinks' %}
+        {% include {{include.sublinks}} %}
+    {% endif %}
 
   </header>
     <div id="content-wrapper">
