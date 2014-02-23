@@ -59,7 +59,7 @@
     </div>
 
     {% if include.sublinks != 'no_sublinks' %}
-        {% include linksections/{{include.sublinks}}.html %}
+        {% include {{include.sublinks}} %}
     {% endif %}
 
   </header>
