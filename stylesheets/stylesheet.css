@@ -180,6 +180,7 @@ aside a.button.github small {
   font-size: 11px;
 }
 aside a.button.github {
+  color: #2F7BCB;
   background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
 
