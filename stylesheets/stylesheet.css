@@ -78,6 +78,9 @@ header h1 {
   line-height: 1;
   margin-bottom: 0.2em;
 }
+header img {
+    height: 72px;
+}
 
 header h2 {
   font-size: 26px;
