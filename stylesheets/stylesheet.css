@@ -102,6 +102,13 @@ header h3 {
   letter-spacing: 0;
 }
 
+header h3.versionstring {
+  position: absolute;
+  width: auto;
+  top: 0;
+  right: 0;
+}
+
 .inner {
   position: relative;
   width: 940px;
