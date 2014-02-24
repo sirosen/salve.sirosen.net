@@ -11,17 +11,17 @@ layout: langpage
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 
+[common]
+user=$USER
+group=$SALVE_USER_PRIMARY_GROUP
+
 [file]
 action=copy
 mode=600
-user=$USER
-group=$SALVE_USER_PRIMARY_GROUP
 
 [directory]
 action=copy
 mode=755
-user=$USER
-group=$SALVE_USER_PRIMARY_GROUP
 
 [manifest]</code></pre>
 
