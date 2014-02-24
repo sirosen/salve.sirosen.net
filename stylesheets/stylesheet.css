@@ -531,6 +531,9 @@ footer a:hover {
   header h3 {
     font-size: 18px;
   }
+  header h3.versionstring {
+    position: relative;
+  }
   header .inner.linksection a.linkbutton,
   header .inner.linksection.linksubsection a.linkbutton {
     font-size: 14px;
