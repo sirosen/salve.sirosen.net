@@ -1,5 +1,6 @@
 safe: true
 lsi: false
 pygments: true
-source: /home/sirosen/SALVE/
-baseurl: "http://sirosen.github.io/SALVE/"
+source: /home/sirosen/SALVE
+baseurl: "http://salve.sirosen.net/"
+markdown: kramdown
