@@ -2,21 +2,38 @@
 layout: langpage
 ---
 
-<h1><a name="salve-attributes" class="anchor" href="#salve-attributes"><span class="octicon octicon-link"></span></a>SALVE Attributes, Precedence, and Config Files</h1>
+<h1>
+    <a name="salve-attributes-precedence-and-config-files" class="anchor"
+       href="#salve-attributes-precedence-and-config-files">
+        <span class="octicon octicon-link">
+        </span>
+    </a>
+    SALVE Attributes, Precedence, and Config Files
+</h1>
 
 <p>In what order do variables override one another?
 How do I specify machine-specific configuration and apply it globally to a manifest tree?
 Here we describe the configuration files, their order of application, and the behavior of blocks with respect to these.</p>
 
 
-<h2><a name="global-attributes" class="anchor" href="#global-attributes"><span class="octicon octicon-link"></span></a>Global Attributes</h2>
+<h2>
+    <a name="global-attributes" class="anchor" href="#global-attributes">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Global Attributes
+</h2>
 
 <p>Global attributes are values plugged directly into the SALVE runtime, and
 therefore apply to all blocks uniformly.
 They are specified in the SALVE settings, and apply to all blocks uniformly.</p>
 
 
-<h2><a name="sensible-defaults" class="anchor" href="#sensible-defaults"><span class="octicon octicon-link"></span></a>Sensible Defaults</h2>
+<h2>
+    <a name="sensible-defaults" class="anchor" href="#sensible-defaults">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Sensible Defaults
+</h2>
 
 <p>As much as possible, SALVE attempts to define all behavior on underspecified blocks.
 There is an underlying set of "sensible defaults" baked into the system, but most of the default settings are specified in the INI files.</p>
@@ -25,7 +42,12 @@ There is an underlying set of "sensible defaults" baked into the system, but mos
 Generally these are variables that refer to paths.
 By specifying default values, SALVE replaces failure conditions with default behaviors that are understandable and even reliable.</p>
 
-<h3><a name="defaults-ini" class="anchor" href="#defaults-ini"><span class="octicon octicon-link"></span></a>Defaults INI Format</h3>
+<h3>
+    <a name="defaults-ini-format" class="anchor" href="#defaults-ini-format">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Defaults INI Format
+</h3>
 
 <p>The ini file is applied to blocks based on simple matching rules.
 Consider this ini file:</p>
@@ -53,7 +75,12 @@ action=copy
 Similarly, all file blocks should have a <code>mode</code> of <code>600</code>, and so forth.</p>
 
 
-<h2><a name="attribute-precedence" class="anchor" href="#attribute-precedence"><span class="octicon octicon-link"></span></a>Attribute Precedence</h2>
+<h2>
+    <a name="attribute-precedence" class="anchor" href="#attribute-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Attribute Precedence
+</h2>
 
 <p>There are numerous locations at which the attribute value of a block can be specified.
 Here we lay out the precedence order for attributes.
@@ -61,31 +88,61 @@ This should be mostly intuitive, as the most tightly scoped value is always take
 The entirety of this can be summarized as <code>block specific &gt; block default &gt; default</code>.</p>
 
 
-<h3><a name="global-attribute-precedence" class="anchor" href="#global-attribute-precedence"><span class="octicon octicon-link"></span></a>Global Attributes</h3>
+<h3>
+    <a name="global-attribute-precedence" class="anchor"
+       href="#global-attribute-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Global Attribute Precedence
+</h3>
 
 <p>Global attributes have the highest precedence level.
 Any attribute assignation in a block's section of the config, or in a single block, will be replaced with a global attribute.
 As a result, global attributes should only be specified with great care, and are well suited to values pertaining to backups and other immutable shared settings.</p>
 
-<h3><a name="block-attribute-precedence" class="anchor" href="#block-attribute-precedence"><span class="octicon octicon-link"></span></a>Block Specific Attributes</h3>
+<h3>
+    <a name="block-specific-attribute-precedence" class="anchor"
+       href="#block-specific-attribute-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Block Specific Attribute Precedence
+</h3>
 
 <p>A value specified in a block takes precedence over any defaults.
 If a block has an attribute assigned in its declaration, that value is used no matter what the surrounding configuration state is.
 Remember that this does not always guarantee the same behavior.
 For example, multiple invocations the same file block that uses relative paths may have different base manifests, and therefore different meanings.</p>
 
-<h3><a name="block-section-attribute-precedence" class="anchor" href="#block-section-attribute-precedence"><span class="octicon octicon-link"></span></a>Block Attributes</h3>
+<h3>
+    <a name="block-section-attribute-precedence" class="anchor"
+       href="#block-section-attribute-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Block Section Attribute Precedence
+</h3>
 
 <p>Any ini file attributes specific to a block type act as the default values for that block.
 For example, if the config specifies a default value of <code>a=1</code> for <code>file</code> blocks, then all file blocks that do not specify <code>a</code> will share this value.
 This applies unless there is a global setting for <code>a</code>, which would override any block-specific attribute.</p>
 
-<h3><a name="default-section-attribute-precedence" class="anchor" href="#default-section-attribute-precedence"><span class="octicon octicon-link"></span></a>Default Attributes</h3>
+<h3>
+    <a name="default-section-attribute-precedence" class="anchor"
+       href="#default-section-attribute-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Default Section Attribute Precedence
+</h3>
 
 <p>Default attributes have the lowest precedence level.
 Defaults are only used when no other attributes apply.</p>
 
-<h2><a name="configfile-precedence" class="anchor" href="#configfile-precedence"><span class="octicon octicon-link"></span></a>Config File Precedence</h2>
+<h2>
+    <a name="configfile-precedence" class="anchor"
+       href="#configfile-precedence">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Config File Precedence
+</h2>
 
 <p>The precedence of ini files is Command Line Specified, then <code>$HOME/.salverc</code>, and finally <code>$SALVE_ROOT/default_settings.ini</code>.
 If an ini file is given in the commandline, it takes precedence over all other files, and so forth: all of these config files are loaded and inspected, overriding one another in order.
@@ -106,7 +163,14 @@ group=developers
 <p>All of my other attribute specifications in the default settings file are still used, but I have overridden the <code>file[group]</code> on the machine.
 In this way, overrides allow me to preserve my settings while maintaining system-specific configuration.</p>
 
-<h3><a name="environment-variable-precedence" class="anchor" href="#environment-variable-precedence"><span class="octicon octicon-link"></span></a>Environment Variable Precedence</h3>
+<h3>
+    <a name="environment-variable-precedence" class="anchor"
+       href="#environment-variable-precedence">
+        <span class="octicon octicon-link">
+        </span>
+    </a>
+    Environment Variable Precedence
+</h3>
 
 <p>Environment variables can be used to override the values found in config files.
 They have a higher precedence level than any configuration files, but still have ordinary precedence with respect to block attribute application.</p>

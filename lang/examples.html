@@ -2,7 +2,12 @@
 layout: langpage
 ---
 
-<h1><a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h1>
+<h1>
+    <a name="examples" class="anchor" href="#examples">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Examples
+</h1>
 
 <p>To understand how a SALVE execution runs, here we present several examples and describe how an execution with them runs.</p>
 
@@ -54,7 +59,13 @@ files
     |-- solarized.vim
     `-- vimrc</code></pre>
 
-<h1><a name="zsh" class="anchor" href="#zsh"><span class="octicon octicon-link"></span></a>Example 1: bash Manifest</h1>
+<h1>
+    <a name="example-1-bash-manifest" class="anchor"
+       href="#example-1-bash-manifest">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example 1: bash Manifest
+</h1>
 
 <p>Consider the following manifest that handles a single bashrc file.
 This is (aside from the empty manifest) about as simple as a manifest can be.</p>
@@ -66,7 +77,12 @@ This is (aside from the empty manifest) about as simple as a manifest can be.</p
 
 <p>kept in a SALVE repo, under the name of <code>manifests/bash.manifest</code>.</p>
 
-<h2><a name="bash-expanded" class="anchor" href="#bash-expanded"><span class="octicon octicon-link"></span></a>bash Manifest Expanded</h2>
+<h2>
+    <a name="bash-manifest-expanded" class="anchor" href="#bash-manifest-expanded">
+        <span class="octicon octicon-link"></span>
+    </a>
+    bash Manifest Expanded
+</h2>
 
 <p>When run via <code>./salve.py deploy -m manifests/bash.manifest</code>, this manifest expandds with the defaults to</p>
 
@@ -84,7 +100,12 @@ Its mode should be set to <code>600</code>, and if running as root, the user and
 If there is an existing file at <code>$HOME/.bashrc</code>, SALVE will back it up before replacing it.</p>
 
 
-<h1><a name="zsh" class="anchor" href="#zsh"><span class="octicon octicon-link"></span></a>Example 2: zsh Manifest</h1>
+<h1>
+    <a name="example-2-zsh-manifest" class="anchor" href="#example-2-zsh-manifest">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example 2: zsh Manifest
+</h1>
 
 <p>Consider the following manifest that handles zsh configuration, stored in <code>manifests/zsh.manifest</code>.</p>
 
@@ -108,7 +129,11 @@ file {
     target  $HOME/.zsh_dircolors
 }</code></pre>
 
-<h2><a name="zsh-first-block" class="anchor" href="#zsh-first-block"><span class="octicon octicon-link"></span></a>zsh Manifest: First Block</h2>
+<h2>
+    <a name="zsh-first-block" class="anchor" href="#zsh-first-block">
+        <span class="octicon octicon-link">zsh Manifest: First Block</span>
+    </a>
+</h2>
 
 <p>When run via <code>./salve.py deploy -m manifests/zsh.manifest</code>, this manifest first specifies</p>
 
@@ -132,7 +157,12 @@ file {
 <code>$SALVE_ROOT/files/zsh/zshrc</code>, should be copied to
 <code>$HOME/.zshrc</code>.</p>
 
-<h2><a name="zsh-all-blocks" class="anchor" href="#zsh-all-blocks"><span class="octicon octicon-link"></span></a>zsh Manifest: All Blocks</h2>
+<h2>
+    <a name="zsh-manifest-all-blocks" class="anchor" href="#zsh-manifest-all-blocks">
+        <span class="octicon octicon-link"></span>
+    </a>
+    zsh Manifest: All Blocks
+</h2>
 
 <p>As a more complete view, a fully expanded manifest is</p>
 
@@ -173,7 +203,12 @@ file {
 }</code></pre>
 
 
-<h1><a name="vim" class="anchor" href="#vim"><span class="octicon octicon-link"></span></a>Example 3: vim Manifest</h1>
+<h1>
+    <a name="example-3-vim-manifest" class="anchor" href="#example-3-vim-manifest">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example 3: vim Manifest
+</h1>
 
 <p>The following manifest handles vim configuration, and includes a directory action.
 It is kept under the name of <code>manifest/vim.manifest</code>.</p>
@@ -193,7 +228,13 @@ file {
     target  $HOME/.vim/colors/solarized.vim
 }</code></pre>
 
-<h2><a name="vim-first-block" class="anchor" href="#vim-first-block"><span class="octicon octicon-link"></span></a>vim Manifest: First Block</h2>
+<h2>
+    <a name="vim-manifest-first-block" class="anchor"
+       href="#vim-manifest-first-block">
+        <span class="octicon octicon-link"></span>
+    </a>
+    vim Manifest: First Block
+</h2>
 
 <p>When run via <code>./salve.py deploy -m manifest/vim.manifest</code>, this manifest first specifies</p>
 
@@ -218,7 +259,12 @@ Its mode should be set to <code>755</code>, and if running as root, the user and
 With this action, there is no backup because the operations performed are necessarily nondestructive.</p>
 
 <h2>
-<a name="vim-all-blocks" class="anchor" href="#vim-all-blocks"><span class="octicon octicon-link"></span></a>vim Manifest: All Blocks</h2>
+    <a name="vim-manifest-all-blocks" class="anchor"
+       href="#vim-manifest-all-blocks">
+        <span class="octicon octicon-link"></span>
+    </a>
+    vim Manifest: All Blocks
+</h2>
 
 <p>As a more complete view, a fully expanded manifest is</p>
 

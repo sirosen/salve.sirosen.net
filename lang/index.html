@@ -3,13 +3,21 @@ layout: langpage
 ---
 
 <h1>
-<a name="the-salve-language" class="anchor" href="#the-salve-language"><span class="octicon octicon-link"></span></a>The SALVE Language</h1>
+    <a name="the-salve-language" class="anchor" href="#the-salve-language">
+        <span class="octicon octicon-link"></span>
+    </a>
+    The SALVE Language
+</h1>
 
 <p>What does a SALVE manifest actually look like?
 Here we describe the basic format of a manifest file.</p>
 
 <h2>
-<a name="example-manifest" class="anchor" href="#example-manifest"><span class="octicon octicon-link"></span></a>Example Manifest</h2>
+    <a name="example-manifest" class="anchor" href="#example-manifest">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example Manifest
+</h2>
 
 <p>We begin with an example, which will be broken down and explained in the sections below.</p>
 
@@ -39,7 +47,11 @@ manifest {
 </code></pre>
 
 <h2>
-<a name="the-grammar" class="anchor" href="#the-grammar"><span class="octicon octicon-link"></span></a>The Grammar</h2>
+    <a name="the-grammar" class="anchor" href="#the-grammar">
+        <span class="octicon octicon-link"></span>
+    </a>
+    The Grammar
+</h2>
 
 <p>A manifest is a file containing expressions, <em>e</em>, in the following basic grammar.
 Some liberties have been taken with notation below.</p>
@@ -90,7 +102,11 @@ meaning.
 Those are defined below.</p>
 
 <h2>
-<a name="variables" class="anchor" href="#variables"><span class="octicon octicon-link"></span></a>Variables</h2>
+    <a name="variables" class="anchor" href="#variables">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Variables
+</h2>
 
 <p>SALVE supports the use of environment variables in templates.
 These values will be pulled out of the executing shell's environment, and used to expand the attribute values of blocks in manifests.</p>
@@ -108,7 +124,11 @@ At present, there is no way to specify the real value of <code>USER</code>, rega
 This ensures that <code>HOME</code> always refers to the invoking user's homedir, even if sudo is set to reset the <code>HOME</code> environment variable.</p>
 
 <h3>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h3>
+    <a name="example" class="anchor" href="#example">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example
+</h3>
 
 <p>Given the block below</p>
 
@@ -124,14 +144,22 @@ the value of "target" after expansion is "/home/user1/.bashrc"
 This holds even when "user1" invokes SALVE with sudo.</p>
 
 <h2>
-<a name="relative-paths" class="anchor" href="#relative-paths"><span class="octicon octicon-link"></span></a>Relative Paths</h2>
+    <a name="relative-paths" class="anchor" href="#relative-paths">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Relative Paths
+</h2>
 
 <p>Relative paths are also supported, so that it is not necessary to rely on values like <code>$SALVE_ROOT</code> and <code>$PWD</code>.
 Relative paths are always interpreted relative to the root manifest's location.
 One item on the docket is to make this an available override behavior via the fileroot commandline option, but to specify relative paths with respect to the dirname of the manifest that contains the block in question.</p>
 
 <h3>
-<a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example</h3>
+    <a name="example-1" class="anchor" href="#example-1">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Example
+</h3>
 
 <p>Given the block below</p>
 
@@ -146,7 +174,11 @@ One item on the docket is to make this an available override behavior via the fi
 then the value of "source" after expansion is "/tmp/myconf/files/bash/bashrc"</p>
 
 <h2>
-<a name="definitions" class="anchor" href="#definitions"><span class="octicon octicon-link"></span></a>Definitions</h2>
+    <a name="definitions" class="anchor" href="#definitions">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Definitions
+</h2>
 
 <p>Each attribute of a block has a specific meaning, and many of the values themselves are keywords referring to specific actions.
 Knowing these meanings is key to reading and understanding a manifest.
@@ -154,88 +186,139 @@ Below are the definitions of each manifest action, given in a subscript notation
 For example, <code>file[action]</code> specifies the 'action' attribute of 'file' blocks.</p>
 
 <h3>
-<a name="fileaction" class="anchor" href="#fileaction"><span class="octicon octicon-link"></span></a>file[action]</h3>
+    <a name="fileaction" class="anchor" href="#fileaction">
+        <span class="octicon octicon-link"></span>
+    </a>
+    file[action]
+</h3>
 <p>Specifies what the file block does.</p>
 
 <ul>
-<li><p><code>file[action]=copy</code> -- The copy action copies <code>file[source]</code> to <code>file[target]</code></p></li>
+<li><code>file[action]=copy</code> -- The copy action copies <code>file[source]</code> to <code>file[target]</code></li>
 
-<li><p><code>file[action]=create</code> -- The create action touches <code>file[target]</code></p></li>
+<li><code>file[action]=create</code> -- The create action touches <code>file[target]</code></li>
 </ul>
 
 <h3>
-<a name="filemode" class="anchor" href="#filemode"><span class="octicon octicon-link"></span></a>file[mode]</h3>
+    <a name="filemode" class="anchor" href="#filemode">
+        <span class="octicon octicon-link"></span>
+    </a>
+    file[mode]
+</h3>
 <p>Is the umask (given in the typical octal notation) to be set on the file specified by <code>file[target]</code>.</p>
 
 <h3>
-<a name="fileuser-filegroup" class="anchor" href="#fileuser-filegroup"><span class="octicon octicon-link"></span></a>file[user], file[group]</h3>
+    <a name="fileuser-filegroup" class="anchor" href="#fileuser-filegroup">
+        <span class="octicon octicon-link"></span>
+    </a>
+    file[user], file[group]
+</h3>
 <p>These are set via chmod whenever SALVE is invoked as root.
 Otherwise, they do nothing.</p>
 
 <ul>
-<li><p><code>file[user]</code> -- The owner of <code>file[target]</code>.</p></li>
+<li><code>file[user]</code> -- The owner of <code>file[target]</code>.</li>
 
-<li><p><code>file[group]</code> -- The owning group of <code>file[target]</code>.</p></li>
+<li><code>file[group]</code> -- The owning group of <code>file[target]</code>.</li>
 </ul>
 
 <h3>
-<a name="filesource-filetarget" class="anchor" href="#filesource-filetarget"><span class="octicon octicon-link"></span></a>file[source], file[target]</h3>
+    <a name="filesource-filetarget" class="anchor"
+       href="#filesource-filetarget">
+        <span class="octicon octicon-link"></span>
+    </a>
+    file[source], file[target]
+</h3>
 <p>The paths to files specified by the block.
 Typically the target is a location on the filesystem being configured, and the source is a file versioned in the SALVE repository being used to modify the target.</p>
 
 <h3>
-<a name="filebackup_dir-filebackup_log" class="anchor" href="#filebackup_dir-filebackup_log"><span class="octicon octicon-link"></span></a>file[backup_dir], file[backup_log]</h3>
+    <a name="filebackup_dir-filebackup_log" class="anchor"
+       href="#filebackup_dir-filebackup_log">
+        <span class="octicon octicon-link">
+        </span>
+    </a>
+    file[backup_dir], file[backup_log]
+</h3>
 <p>The backup_dir holds backups of any files that have destructive operations performed on them by the block.
 The backup_log records all backups that are performed.</p>
 
 <ul>
-<li><p><code>file[backup_dir]</code> -- The path to the directory in which file backups are stored</p></li>
+<li><code>file[backup_dir]</code> -- The path to the directory in which file backups are stored</li>
 
-<li><p><code>file[backup_log]</code> -- The path to the file to which backup actions are logged (date, hash, full path to file)</p></li>
+<li><code>file[backup_log]</code> -- The path to the file to which backup actions are logged (date, hash, full path to file)</li>
 </ul>
 
 <h3>
-<a name="manifestsource" class="anchor" href="#manifestsource"><span class="octicon octicon-link"></span></a>manifest[source]</h3>
+    <a name="manifestsource" class="anchor" href="#manifestsource">
+        <span class="octicon octicon-link"></span>
+    </a>
+    manifest[source]
+</h3>
 <p>The path to the manifest that is expanded at this location.</p>
 
 <h3>
-<a name="directoryaction" class="anchor" href="#directoryaction"><span class="octicon octicon-link"></span></a>directory[action]</h3>
+    <a name="directoryaction" class="anchor" href="#directoryaction">
+        <span class="octicon octicon-link"></span>
+    </a>
+    directory[action]
+</h3>
 
 <ul>
-<li><p><code>directory[action]=create</code><br />
-Create the directory at <code>directory[target]</code>, and any required ancestors</p></li>
-<li><p><code>directory[action]=copy</code><br />
-Create the directory at <code>directory[target]</code>, and then recursively copy contents from <code>directory[source]</code> to <code>directory[target]</code></p></li>
+<li><code>directory[action]=create</code> -- Create the directory at <code>directory[target]</code>, and any required ancestors</li>
+<li><code>directory[action]=copy</code> -- Create the directory at <code>directory[target]</code>, and then recursively copy contents from <code>directory[source]</code> to <code>directory[target]</code></li>
 </ul>
 
 <h3>
-<a name="directorymode" class="anchor" href="#directorymode"><span class="octicon octicon-link"></span></a>directory[mode]</h3>
+    <a name="directorymode" class="anchor" href="#directorymode">
+        <span class="octicon octicon-link"></span>
+    </a>
+    directory[mode]
+</h3>
 <p>Is the umask (given in the typical octal notation) to be set on the directory specified by <code>directory[target]</code>.</p>
 
 <h3>
-<a name="directoryuser-directorygroup" class="anchor" href="#directoryuser-directorygroup"><span class="octicon octicon-link"></span></a>directory[user], directory[group]</h3>
+    <a name="directoryuser-directorygroup" class="anchor"
+       href="#directoryuser-directorygroup">
+       <span class="octicon octicon-link">
+       </span>
+    </a>
+    directory[user], directory[group]
+</h3>
 <p>These are set via chmod whenever SALVE is invoked as root.
 Otherwise, they do nothing.</p>
 
 <ul>
-<li><p><code>directory[user]</code> -- The owner of <code>directory[target]</code>.</p></li>
+<li><code>directory[user]</code> -- The owner of <code>directory[target]</code>.</li>
 
-<li><p><code>file[group]</code> -- The owning group of <code>directory[target]</code>.</p></li>
+<li><code>file[group]</code> -- The owning group of <code>directory[target]</code>.</li>
 </ul>
 
 <h3>
-<a name="directorysource-directorytarget" class="anchor" href="#directorysource-directorytarget"><span class="octicon octicon-link"></span></a>directory[source], directory[target]</h3>
+    <a name="directorysource-directorytarget" class="anchor"
+       href="#directorysource-directorytarget">
+        <span class="octicon octicon-link">
+        </span>
+    </a>
+    directory[source], directory[target]
+</h3>
 <p>The paths to directories specified by the block.
 Typically the target is a location on the filesystem being configured, and the source is a directory versioned in the SALVE repository being used to modify the target.
 When only one path exists, it is typically the target.</p>
 
 <h3>
-<a name="directorybackup_dir-directorybackup_log" class="anchor" href="#directorybackup_dir-directorybackup_log"><span class="octicon octicon-link"></span></a>directory[backup_dir], directory[backup_log]</h3>
+    <a name="directorybackup_dir-directorybackup_log" class="anchor"
+       href="#directorybackup_dir-directorybackup_log">
+        <span class="octicon octicon-link">
+        </span>
+    </a>
+    directory[backup_dir], directory[backup_log]
+</h3>
 <p>The backup_dir holds backups of any files that have destructive operations performed on them by the block.
 The backup_log records all backups that are performed.</p>
 
 <ul>
-<li><p><code>file[backup_dir]</code> -- The path to the directory in which file backups are stored</p></li>
+<li><code>file[backup_dir]</code> -- The path to the directory in which file backups are stored</li>
 
-<li><p><code>file[backup_log]</code> -- The path to the file to which backup actions are logged (date, hash, full path to file)</p></li>
+<li><code>file[backup_log]</code> -- The path to the file to which backup actions are logged (date, hash, full path to file)</li>
 </ul>

@@ -2,7 +2,12 @@
 layout: default
 ---
 
-<h1><a name="execution-model" class="anchor" href="#execution-model"><span class="octicon octicon-link"></span></a>Execution Model</h1>
+<h1>
+    <a name="execution-model" class="anchor" href="#execution-model">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Execution Model
+</h1>
 
 <p>The execution model of SALVE is that of a just-in-time compiled language.
 Every execution of a SALVE manifest can be broken apart into phases of Parsing and Expansion, Action Conversion, and Verification and Execution.</p>
@@ -11,7 +16,12 @@ Every execution of a SALVE manifest can be broken apart into phases of Parsing a
 Actions are kept in a tree structure, and executed by a preorder traversal of the tree's leaves, so they are essentially sequential (although non-sequential executions are a future possibility).
 The action tree, whose internal nodes are Action Lists, consists of Python objects.</p>
 
-<h2><a name="actions" class="anchor" href="#actions"><span class="octicon octicon-link"></span></a>Actions</h2>
+<h2>
+    <a name="actions" class="anchor" href="#actions">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Actions
+</h2>
 
 <p>Actions are callable objects, meaning that each Action wraps a functions -- the objects' <code>__call__</code> attribute.
 This makes Actions a kind of heavy-weight, Object Oriented implementation of closures in Python.
@@ -22,7 +32,12 @@ This is not to say that there are no disadvantages associated with this clunky c
 <p>Instances of Actions carry their operands as attributes, meaning that once the Action Tree is built, the source manifests have been compiled.
 At this point, the Action Tree is more or less immutable, and contains the intermediate representation of the SALVE execution.</p>
 
-<h1><a name="parsing-expansion" class="anchor" href="#parsing-expansion"><span class="octicon octicon-link"></span></a>Parsing and Expansion</h1>
+<h1>
+    <a name="parsing-and-expansion" class="anchor" href="#parsing-and-expansion">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Parsing and Expansion
+</h1>
 
 <p>Because Actions are typical Python objects, kept in heap memory, it is tempting to think that SALVE is interpreted, but this is not the case.
 In fact, all phases of SALVE compilation are executed across the entire manifest tree, giving the typical separation between compile-time and run-time errors.
@@ -40,5 +55,17 @@ Consider the sample manifest text below:</p>
 As a result of this requirement, the initial phase of execution consists of alternating between converting manifests to blocks and expanding the attribute values of those blocks.
 During either one of these two phases, errors may be encountered, but, as they would all be errors pertaining to the correct generation of an intermediate representation, they are all compilation errors.</p>
 
-<h1><a name="action-conversion" class="anchor" href="#action-conversion"><span class="octicon octicon-link"></span></a>Action Conversion</h1>
-<h1><a name="verify-and-exec" class="anchor" href="#verify-and-exec"><span class="octicon octicon-link"></span></a>Verification and Execution</h1>
+<h1>
+    <a name="action-conversion" class="anchor" href="#action-conversion">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Action Conversion
+</h1>
+
+<h1>
+    <a name="verification-and-execution" class="anchor"
+       href="#verification-and-execution">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Verification and Execution
+</h1>

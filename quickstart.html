@@ -2,22 +2,42 @@
 layout: default
 ---
 
-<h1><a name="quickstart" class="anchor" href="#quickstart"><span class="octicon octicon-link"></span></a>Quickstart Guide</h1>
+<h1>
+    <a name="quickstart-guide" class="anchor" href="#quickstart-guide">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Quickstart Guide
+</h1>
 
 <p>This quick-start guide is designed to get you up and running as quickly as possible.</p>
 
-<h1><a name="fork" class="anchor" href="#fork"><span class="octicon octicon-link"></span></a>Step 1: Fork SALVE</h1>
+<h1>
+    <a name="step-1-fork-salve" class="anchor" href="#step-1-fork-salve">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Step 1: Fork SALVE
+</h1>
 
 <p>The recommended way to use SALVE is to fork it and layer your own configuration on top of it.
 By doing this, it becomes possible to trivially pull in upstream changes from the stable branch or release versions of SALVE.</p>
 
-<h2><a name="fork-with-github" class="anchor" href="#fork-with-github"><span class="octicon octicon-link"></span></a>Fork With GitHub</h2>
+<h2>
+    <a name="fork-with-github" class="anchor" href="#fork-with-github">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Fork With GitHub
+</h2>
 
 <p>The easiest way to fork SALVE is to use GitHub's built-in forking utilities.
 Go to <a href="https://github.com/sirosen/SALVE">SALVE on GitHub</a> and click the "Fork" button.
 This will create a new fork, in which you can start placing your own configuration.</p>
 
-<h2><a name="fork-manual" class="anchor" href="#fork-manual"><span class="octicon octicon-link"></span></a>... Or Fork Manually</h2>
+<h2>
+    <a name="or-fork-manually" class="anchor" href="#or-fork-manually">
+        <span class="octicon octicon-link"></span>
+    </a>
+    ... Or Fork Manually
+</h2>
 
 <p>If you don't use GitHub or don't like it's forking utility, you can always do this by cloning the SALVE repo by running</p>
 
@@ -26,7 +46,12 @@ This will create a new fork, in which you can start placing your own configurati
 <p>where "my-config" is the name you want to give to your local fork.
 Push this to any remotes you like to use; Bitbucket, GitHub, and other free git servers are recommended.</p>
 
-<h2><a name="add-upstream" class="anchor" href="#add-upstream"><span class="octicon octicon-link"></span></a>Add 'upstream' to Remote</h2>
+<h2>
+    <a name="add-upstream-remote" class="anchor" href="#add-upstream-remote">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Add 'upstream' Remote
+</h2>
 
 <p>Whatever method you chose to fork the repository, you should add a remote to at least one of your copies of it pointing to the GitHub SALVE repository.
 The name 'upstream' is common among git users, so we will assume that is the name you choose.
@@ -40,7 +65,12 @@ Run</p>
 Either a specific release can be specified, as in <code>git pull upstream 1.0.1</code>, or you can pull the latest version with <code>git pull upstream stable</code>.
 If you like to live on the bleeding edge, <code>git pull upstream dev</code> is available, and may have newer features than stable, but it is not guaranteed to work correctly.</p>
 
-<h1><a name="add-bashrc" class="anchor" href="#add-bashrc"><span class="octicon octicon-link"></span></a>Step 2: Add Your Bashrc</h1>
+<h1>
+    <a name="step-2-add-your-bashrc" class="anchor" href="#step-2-add-your-bashrc">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Step 2: Add Your Bashrc
+</h1>
 
 <p>These steps work with any file of your choice, but a bashrc is a good example of a file that should be managed with SALVE.</p>
 
@@ -63,7 +93,12 @@ action copy
 <code>git commit -am "Adding bashrc and bash manifest."</code>
 Push to any remotes you use, and you are now ready to deploy your bashrc with SALVE.</p>
 
-<h1><a name="deploy" class="anchor" href="#deploy"><span class="octicon octicon-link"></span></a>Step 3: Deploy</h1>
+<h1>
+    <a name="step-3-deploy" class="anchor" href="#step-3-deploy">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Step 3: Deploy
+</h1>
 
 <p>The final step is to deploy your bashrc using SALVE.
 Since SALVE automagically backs up files that it overwrites, you can always recover the older bashrc file after you deploy.
