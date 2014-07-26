@@ -3,34 +3,31 @@ layout: default
 ---
 
 <h1>
-    <a name="execution-model" class="anchor" href="#execution-model">
+    <a name="salve-is-compiled" class="anchor" href="#salve-is-compiled">
         <span class="octicon octicon-link"></span>
     </a>
-    Execution Model
+    SALVE is Compiled
 </h1>
 
-<p>The execution model of SALVE is that of a just-in-time compiled language.
-Every execution of a SALVE manifest can be broken apart into phases of Parsing and Expansion, Action Conversion, and Verification and Execution.</p>
+<p>SALVE may look and feel to you like an interpreted language because its
+expressions are so restricted and simple.
+When describing actions on files and directories, it's hard to see what the
+benefit of using a compiled language could be.
+But all of the power of SALVE -- the benefit it provides over a sequence of
+<code>cp</code>s and <code>mkdir</code>s -- is derived from the fact that it is
+compiled.</p>
+
+<p>Every execution of a SALVE manifest can be broken apart into the following
+phases:</p>
+<ol>
+<li>Parsing and Expansion</li>
+<li>Compilation</li>
+<li>Verification</li>
+<li>Execution</li>
+</ol>
 
 <p>SALVE's compilation target for manifests is an intermediate representation of Actions.
-Actions are kept in a tree structure, and executed by a preorder traversal of the tree's leaves, so they are essentially sequential (although non-sequential executions are a future possibility).
-The action tree, whose internal nodes are Action Lists, consists of Python objects.</p>
-
-<h2>
-    <a name="actions" class="anchor" href="#actions">
-        <span class="octicon octicon-link"></span>
-    </a>
-    Actions
-</h2>
-
-<p>Actions are callable objects, meaning that each Action wraps a functions -- the objects' <code>__call__</code> attribute.
-This makes Actions a kind of heavy-weight, Object Oriented implementation of closures in Python.
-However, Actions have advantages over mere closures, primarily arising from their participation in a class heirarchy.
-In a pure, functional context, every action would be a closure of type <code>UNIT -&gt; UNIT</code>, making them impossible to distinguish at a Type level.
-This is not to say that there are no disadvantages associated with this clunky closure architecture, only that it is fairly nuanced decision.</p>
-
-<p>Instances of Actions carry their operands as attributes, meaning that once the Action Tree is built, the source manifests have been compiled.
-At this point, the Action Tree is more or less immutable, and contains the intermediate representation of the SALVE execution.</p>
+Actions are Python objects that support Verification and Execution.</p>
 
 <h1>
     <a name="parsing-and-expansion" class="anchor" href="#parsing-and-expansion">
@@ -39,12 +36,18 @@ At this point, the Action Tree is more or less immutable, and contains the inter
     Parsing and Expansion
 </h1>
 
-<p>Because Actions are typical Python objects, kept in heap memory, it is tempting to think that SALVE is interpreted, but this is not the case.
-In fact, all phases of SALVE compilation are executed across the entire manifest tree, giving the typical separation between compile-time and run-time errors.
-Parsing and Expansion is the first phase during which compile-time errors can occur.</p>
+<p>Parsing and Expansion is the first phase during which compile-time errors can occur.
+One might think of it much like the preprocessor pass in a C compiler: it
+parses input into an AST, and preforms some very lightweight variable
+substitutions.</p>
 
-<p>When a manifest is parsed, it produces a series of blocks, some of which may be manifest blocks, specifying further manifests to parse.
-It is not, however, sufficient to continue to try expanding manifest blocks without interleaving other actions.
+<p>Manifests are separated into blocks, some of which specify other manifests.
+One of the main roles of the parsing phase is to expand these manifest blocks
+by parsing (and recursively expanding) the specified manifest files.
+As a result, parsing cannot be separated from some interpretation of manifest
+blocks.</p>
+
+<p>It is not, however, sufficient to continue to try expanding manifest blocks without interleaving other actions.
 Consider the sample manifest text below:</p>
 
 <pre><code>manifest {
@@ -52,15 +55,31 @@ Consider the sample manifest text below:</p>
 }</code></pre>
 
 <p>The value of the source path, as an absolute path, cannot be known until variable expansion takes place and <code>$HOME</code> has a definite value that has been templated in place.
-As a result of this requirement, the initial phase of execution consists of alternating between converting manifests to blocks and expanding the attribute values of those blocks.
-During either one of these two phases, errors may be encountered, but, as they would all be errors pertaining to the correct generation of an intermediate representation, they are all compilation errors.</p>
+For this reason, environment variable substitution must take place at the same
+time as parsing, so that parsing, expansion of manifest blocks, and
+substitution are all part of the same initial pass.</p>
+
+<p>There is an alternative description of Parsing and Execution as three
+independent passes which run multiple times.
+In this form, the Parsing pass refers purely to the reading of a single file
+and the conversion of that file into an AST.
+A second pass, Substitution, runs over the AST and does variable substitution,
+and a third pass, Expansion, runs over the AST searching for manifests.
+That third pass recurses on any manifests, starting a new round of Parsing,
+Substitution, and Expansion.</p>
 
 <h1>
     <a name="action-conversion" class="anchor" href="#action-conversion">
         <span class="octicon octicon-link"></span>
     </a>
-    Action Conversion
+    Compilation
 </h1>
+
+<p>Compilation is a pass over the AST in which some basic correctness checks
+are run, and the AST is converted into a sequence of Actions.
+The exact actions taken during compilation vary depending on the type of block
+being handled, but minimally we verify that every block has a valid set of
+attributes and validate the results Parsing and Expansion.</p>
 
 <h1>
     <a name="verification-and-execution" class="anchor"
@@ -69,3 +88,24 @@ During either one of these two phases, errors may be encountered, but, as they w
     </a>
     Verification and Execution
 </h1>
+
+<p>Although the design of SALVE centers around Verification and Execution as
+separate passes, the current versions do them concurrently as a simplification
+to make the implementation more feasible.
+As one of the major goals of the project in this state, we want to separate
+Verification and Execution into two distinct passes over the sequence of
+Actions.</p>
+
+<p>Verification is the most complete part of SALVE error checking. This is the
+phase in which the compiler confirms that execution of an Action will be
+successful.
+The goal of verification is to ensure, before any actions are performed on
+your system, that every action will be successful.
+However, this is a difficult problem, and for now we are satisfied to verify
+each action before attempting to perform it.</p>
+
+<p>Execution is the final, and arguably simplest, phase.
+At this point, we are confident that actions can be performed without errors
+-- a requirement of SALVE is that there are no changes in state that interfere
+with that assumption.
+All that's left to do it make the requested changes on the filesystem.</p>
