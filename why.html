@@ -9,8 +9,12 @@ layout: home
     Why SALVE?
 </h1>
 
-<p>SALVE is designed to make your life easier, not harder; your configuration simpler, not more complicated; and to let you do it your way.
-The project was motivated by the common desire for versioned configuration and the complexity of existing configuration management systems.</p>
+<p>SALVE is designed to</p>
+
+<ul>
+    <li>Safely deploy configuration files kept in a VCS</li>
+    <li>Be (much) less complicated than existing software for this purpose</li>
+</ul>
 
 <h2>
     <a name="much-safer-than-shell-scripts" class="anchor"
@@ -31,7 +35,9 @@ The parser, variable expansion, and safety checks prior to execution attempt to 
 
 <p>The ultimate goal is to ensure, as much as possible, that the requested actions can be executed successfully.
 This includes validating acceptable values, and ensuring the effective UID grants sufficient permissions to perform actions.
-At the end of the day, the burden is on you to ensure that your configuration is correct, but SALVE will do its best to detect and abort on errors pertaining to botched specifications prior to any part of the execution beginning.</p>
+The burden is always ultimately on you to ensure that your configuration is
+correct, but your tools should make that easy, not hard.
+SALVE will do its best to detect and abort on errors pertaining to botched specifications prior to any part of the execution beginning.</p>
 
 <h2>
     <a name="chef-and-puppet-are-very-complicated" class="anchor"
@@ -41,7 +47,9 @@ At the end of the day, the burden is on you to ensure that your configuration is
     Chef and Puppet are Very Complicated
 </h2>
 
-<p>At the time of this writing, there are two prominent tools to manage configuration on servers: Chef and Puppet.
+<p>At the time of this writing, there are a few prominent tools to manage
+configuration on servers.
+The most popular ones seem to be Chef and Puppet.
 For those unfamiliar with these tools, the following is a list of key concepts and components in Chef:
 
 <ul>
@@ -65,7 +73,10 @@ For those unfamiliar with these tools, the following is a list of key concepts a
 </ul>
 
 There is a lot of expressive power in these tools, but there is a high cost for this power.
-They are complicated and very hard to use correctly.
+Chef essentially makes no distinction between a User, as someone who wants to
+manage configuration, and a Developer, as someone who is prepared to contribute to
+Chef.
+The components are complicated and very hard to use correctly.
 </p>
 
 <p>For contrast, here is the list of SALVE's core concepts and tools:
@@ -73,7 +84,7 @@ They are complicated and very hard to use correctly.
 <li>SALVE Language</li>
 <li>SALVE CLI</li>
 <li>Environment Variables</li>
-<li>INI Files</li>
+<li>INI Files (SALVE Configuration)</li>
 </ul>
 </p>
 
@@ -116,10 +127,11 @@ This should hold regardless of the machine state.</p>
 SALVE aims to solve this problem in the simplest and most direct way possible, by using a DSL which only supports descriptions of idempotent actions.</p>
 
 <h2>
-    <a name="simplicity-is-elegance" class="anchor" href="#simplicity-is-elegance">
+    <a name="separation-of-concerns" class="anchor"
+       href="#separation-of-concerns">
         <span class="octicon octicon-link"></span>
     </a>
-    Simplicity is Elegance
+    Separation of Concerns
 </h2>
 
 <p>The design of SALVE is not disimilar to the common UNIX perspective on command line tools.
@@ -138,15 +150,6 @@ Because the semantics are derived almost entirely from the choice of keywords, S
     </a>
    Minimal Dependencies and Assumptions
 </h1>
-
-<h2>
-    <a name="salve-only-depends-on-what-the-manifests-use" class="anchor"
-       href="#salve-only-depends-on-what-the-manifests-use">
-       <span class="octicon octicon-link">
-       </span>
-    </a>
-    SALVE Only Depends on What the Manifests Use
-</h2>
 
 <p>SALVE does not rely on external tools like Debian's dpkg or OSX's MacPorts.
 Ultimately, all that's required is python2.7+, a working shell, and permissions to perform the operations requested in the Manifests.
