@@ -208,40 +208,6 @@ aside a.button.github {
   background: transparent url(../images/bgs/github-button.png) 0 0 no-repeat;
 }
 
-header .inner.linksection a.linkbutton {
-  white-space: nowrap;
-  line-height: 2.5;
-  color: #FFD700;
-  font-size: 22px;
-
-  background-color:  #184AD0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
-  overflow: hidden;
-
-  margin-right: 11px;
-  margin-top: 22px;
-
-  font-family: Helvetica, Arial, serif;
-}
-
-header .inner.linksection.linksubsection a.linkbutton {
-  color: #FFFF00;
-
-  font-size: 18px;
-  margin-right: 9px;
-  margin-top: 18px;
-
-  border-radius: 2.5px;
-  -moz-border-radius: 2.5px;
-  -webkit-border-radius: 2.5px;
-  padding-right: 2.5px;
-  padding-left: 2.5px;
-}
-
 code, pre {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color: #222;
