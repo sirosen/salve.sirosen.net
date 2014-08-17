@@ -39,6 +39,8 @@
   <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
 
+  <script src="/javascripts/jquery.js"></script>
+
   <title>SALVE by sirosen</title>
 </head>
 
@@ -47,7 +49,18 @@
     <div class="inner">
       <a href="{{site.baseurl}}"><h1 style="display:inline;">SALVE</h1><img src="{{site.baseurl}}images/logo.png"></a>
       <h2>Simple And Local Versioning Ecosystem</h2>
-      <h3 class="versionstring">Latest Stable Version: 2.2.0</h3>
+      <h3 class="versionstring" id="ver">
+        <script type=text/javascript>
+            $(document).ready(
+                $.getJSON("{{site.baseurl}}/javascripts/info.json",
+                    function ( obj ) {
+                    var elem = document.getElementById("ver")
+                    elem.innerHTML = "Latest Stable Version " + obj.version
+                    }
+                    )
+                )
+        </script>
+      </h3>
       <a href="http://sirosen.net" class="button">About the Author</a>
     </div>
 
