@@ -111,8 +111,6 @@ header .inner .versions {
 header h3.versionstring {
   position: relative;
   width: auto;
-  top: 0;
-  right: 0;
 }
 
 .inner {
@@ -485,9 +483,11 @@ footer a:hover {
   header h3 {
     font-size: 18px;
   }
-  header h3.versionstring {
+
+  header .inner .versions {
     position: relative;
   }
+
   header .inner.linksection a.linkbutton,
   header .inner.linksection.linksubsection a.linkbutton {
     font-size: 14px;
