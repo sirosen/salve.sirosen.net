@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{{site.baseurl}}stylesheets/stylesheet.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}stylesheets/navbar.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="{{site.baseurl}}stylesheets/pygment_trac.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="{{site.baseurl}}stylesheets/print.css" media="print" />
 
@@ -54,15 +55,30 @@
       <a href="http://sirosen.net" class="button">About the Author</a>
     </div>
 
-    <div class="inner linksection">
-      <a href="{{site.baseurl}}" class="linkbutton">Home</a>
-      <a href="{{site.baseurl}}lang" class="linkbutton">The SALVE Language</a>
-      <a href="{{site.baseurl}}quickstart.html" class="linkbutton">Quick Start Guide</a>
+    <div class="inner">
+      <navbar>
+        <ul>
+          <li><a href="{{site.baseurl}}" class="linkbutton">Home</a>
+            <ul>
+              <li><a href="{{site.baseurl}}why.html"
+                  class="linkbutton">Why Use SALVE?</a></li>
+              <li><a href="{{site.baseurl}}notes.html"
+                  class="linkbutton">Notes</a></li>
+            </ul>
+          </li>
+          <li><a href="{{site.baseurl}}lang" class="linkbutton">The SALVE Language</a>
+            <ul>
+              <li><a href="{{site.baseurl}}lang/examples.html"
+                  class="linkbutton">Examples</a></li>
+              <li><a href="{{site.baseurl}}lang/attributes.html"
+                  class="linkbutton">Attribute Precedence</a></li>
+            </ul>
+          </li>
+          <li><a href="{{site.baseurl}}quickstart.html" class="linkbutton">Quick Start Guide</a></li>
+        </ul>
+      </navbar>
     </div>
 
-    {% if include.sublinks != 'no_sublinks' %}
-        {% include {{include.sublinks}} %}
-    {% endif %}
 
   </header>
     <div id="content-wrapper">
