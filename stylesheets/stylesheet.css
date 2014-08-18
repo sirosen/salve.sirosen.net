@@ -79,7 +79,7 @@ header h1 {
   margin-bottom: 0.2em;
 }
 header img {
-    height: 72px;
+    height: 58px;
     padding-right: 36px;
     padding-left: 36px;
 }
@@ -104,8 +104,10 @@ header h3 {
 
 header .inner .versions {
     position: absolute;
-    top: 0;
+    top: 16px;
     right: 0;
+    text-align: right;
+    font-size: 10px;
 }
 
 header h3.versionstring {
@@ -384,7 +386,7 @@ footer a:hover {
     font-size: 60px;
   }
   header img {
-    height: 60px;
+    height: 48px;
     padding-right: 30px;
     padding-left: 30px;
   }
@@ -427,7 +429,7 @@ footer a:hover {
     font-size: 48px;
   }
   header img {
-    height: 48px;
+    height: 38px;
     padding-right: 24px;
     padding-left: 24px;
   }
@@ -440,6 +442,9 @@ footer a:hover {
 
   header .inner .versions {
     position: relative;
+    text-align: left;
+    font-size: 8px;
+    top: 0;
   }
 
   #main-content {
