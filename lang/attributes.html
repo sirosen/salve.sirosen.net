@@ -50,9 +50,11 @@ By specifying default values, SALVE replaces failure conditions with default beh
 </h3>
 
 <p>The ini file is applied to blocks based on simple matching rules.
-Consider this ini file:</p>
+Consider this config file:</p>
 
-<pre><code>[global]
+<div class="folding-code">
+<h3>settings.ini</h3>
+<code>[global]
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 
@@ -68,8 +70,8 @@ user=$USER
 group=$SALVE_USER_PRIMARY_GROUP
 action=copy
 
-[manifest]
-</code></pre>
+[manifest]</code>
+</div>
 
 <p>This specifies that the global attributes <code>backup_dir</code> and <code>backup_log</code> should be set to <code>$HOME/.salve/backups</code> and <code>$HOME/.salve/backup.log</code> respectively.
 Similarly, all file blocks should have a <code>mode</code> of <code>600</code>, and so forth.</p>

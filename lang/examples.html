@@ -11,8 +11,11 @@ layout: langpage
 
 <p>To understand how a SALVE execution runs, here we present several examples and describe how an execution with them runs.</p>
 
-<p>All examples are evaluated with the following <code>default_settings.ini</code>:</p>
-<pre><code>[global]
+<p>All examples are evaluated with the following settings:</p>
+
+<div class="folding-code">
+<h3>default_settings.ini</h3>
+<code>[global]
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 verbosity=2
@@ -30,11 +33,14 @@ mode=600
 action=copy
 mode=755
 
-[manifest]</code></pre>
+[manifest]</code>
+</div>
 
 <p>and the following directory structure:</p>
 
-<pre><code>LICENSE
+<div class="folding-code">
+<h3>Directory Tree</h3>
+<code>LICENSE
 README.md
 default_settings.ini
 salve.py
@@ -57,7 +63,8 @@ files
 |   `-- zshrc.zni
 `-- vim
     |-- solarized.vim
-    `-- vimrc</code></pre>
+    `-- vimrc</code>
+</div>
 
 <h1>
     <a name="example-1-bash-manifest" class="anchor"
@@ -109,7 +116,9 @@ If there is an existing file at <code>$HOME/.bashrc</code>, SALVE will back it u
 
 <p>Consider the following manifest that handles zsh configuration, stored in <code>manifests/zsh.manifest</code>.</p>
 
-<pre><code>file {
+<div class="folding-code">
+<h3>zsh.manifest</h3>
+<code>file {
     source  files/zsh/zshrc
     target  $HOME/.zshrc
 }
@@ -127,7 +136,8 @@ file {
 file {
     source  files/zsh/zsh_dircolors
     target  $HOME/.zsh_dircolors
-}</code></pre>
+}</code>
+</div>
 
 <h2>
     <a name="zsh-first-block" class="anchor" href="#zsh-first-block">
@@ -166,7 +176,9 @@ file {
 
 <p>As a more complete view, a fully expanded manifest is</p>
 
-<pre><code>file {
+<div class="folding-code">
+<h3>Expanded zsh.manifest</h3>
+<code>file {
     source      files/zsh/zshrc
     target      $HOME/.zshrc
     action      copy
@@ -200,7 +212,8 @@ file {
     mode        600
     user        $USER
     group       $SALVE_USER_PRIMARY_GROUP
-}</code></pre>
+}</code>
+</div>
 
 
 <h1>
@@ -213,7 +226,9 @@ file {
 <p>The following manifest handles vim configuration, and includes a directory action.
 It is kept under the name of <code>manifest/vim.manifest</code>.</p>
 
-<pre><code>directory {
+<div class="folding-code">
+<h3>vim.manifest</h3>
+<code>directory {
     target  $home/.vim/colors
     action  create
 }
@@ -226,7 +241,8 @@ file {
 file {
     source  files/vim/solarized.vim
     target  $HOME/.vim/colors/solarized.vim
-}</code></pre>
+}</code>
+</div>
 
 <h2>
     <a name="vim-manifest-first-block" class="anchor"
@@ -268,7 +284,9 @@ With this action, there is no backup because the operations performed are necess
 
 <p>As a more complete view, a fully expanded manifest is</p>
 
-<pre><code>directory {
+<div class="folding-code">
+<h3>Expanded vim.manifest</h3>
+<code>directory {
     target      $home/.vim/colors
     action      create
     mode        755
@@ -290,6 +308,7 @@ file {
     mode        600
     user        $USER
     group       $SALVE_USER_PRIMARY_GROUP
-}</code></pre>
+}</code>
+</div>
 
 <p>Note that the <code>file[mode]</code> and <code>directory[mode]</code> are distinct, and that the specified directory action overrides the default <code>copy</code>.</p>

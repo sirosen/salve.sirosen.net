@@ -21,7 +21,9 @@ Here we describe the basic format of a manifest file.</p>
 
 <p>We begin with an example, which will be broken down and explained in the sections below.</p>
 
-<pre><code>file {
+<div class="folding-code">
+<h3>Manifest Source</h3>
+<code>file {
     source  files/bash/bashrc
     target  $HOME/.bashrc
     mode    600
@@ -44,7 +46,8 @@ file {
 manifest {
     source  manifests/vim.manifest
 }
-</code></pre>
+</code>
+</div>
 
 <h2>
     <a name="the-grammar" class="anchor" href="#the-grammar">
@@ -56,7 +59,9 @@ manifest {
 <p>A manifest is a file containing expressions, <em>e</em>, in the following basic grammar.
 Some liberties have been taken with notation below.</p>
 
-<pre><code>e := Empty String
+<div class="folding-code">
+<h3>SALVE Grammar</h3>
+<code>e := Empty String
    | block_id { attrs } e
 
 block_id := "file"
@@ -93,7 +98,8 @@ valuechar := namechar
            | "&lt;" | "&gt;" | "*"
            | "?" | "!" | "%"
            | "#"
-</code></pre>
+</code>
+</div>
 
 <p>Note that this only defines the grammar of acceptable SALVE expressions
 for the parser.
