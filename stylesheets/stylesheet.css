@@ -78,9 +78,14 @@ header h1 {
   line-height: 1;
   margin-bottom: 0.2em;
 }
+header h1::first-letter {
+    padding-top: 10px;
+    font-size: 144px;
+    float: left;
+    margin-bottom: -72px;
+}
 header img {
     height: 58px;
-    padding-right: 36px;
     padding-left: 36px;
 }
 
@@ -380,14 +385,13 @@ footer a:hover {
     width: 740px;
   }
   header h1, header h2, header h3 {
-    width: 340px;
+    width: 380px;
   }
   header h1 {
     font-size: 60px;
   }
   header img {
     height: 48px;
-    padding-right: 30px;
     padding-left: 30px;
   }
   header h2 {
@@ -427,6 +431,12 @@ footer a:hover {
   }
   header h1 {
     font-size: 48px;
+  }
+  header h1:first-letter {
+    padding-top: inherit;
+    font-size: inherit;
+    float: inherit;
+    margin-bottom: inherit;
   }
   header img {
     height: 38px;
