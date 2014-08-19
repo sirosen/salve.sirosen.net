@@ -79,10 +79,15 @@ header h1 {
   margin-bottom: 0.2em;
 }
 header h1::first-letter {
-    padding-top: 10px;
+    margin-top: -10px;
     font-size: 144px;
     float: left;
     margin-bottom: -72px;
+}
+@-moz-document url-prefix() {
+    header h1::first-letter {
+        margin-top: 10px;
+    }
 }
 header img {
     height: 58px;
