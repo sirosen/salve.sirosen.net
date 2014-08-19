@@ -4,8 +4,6 @@
 
 #main-content .folding-code h3:before {
     content: none;
-    padding-right: 0;
-    margin-left: 0;
 }
 
 #main-content .folding-code code {
