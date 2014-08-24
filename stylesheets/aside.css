@@ -22,15 +22,22 @@ aside a.button {
   font-size: 21px;
 }
 
-aside a.button.github small {
+aside a.button small {
   display: block;
   font-size: 11px;
 }
+
 aside a.button.github {
   color: #2F7BCB;
   padding-left: 68px;
   background: transparent url(../images/bgs/github-button.png) 0 0 no-repeat;
 }
+aside a.button.python {
+  color: #2F7BCB;
+  padding-left: 68px;
+  background: transparent url(../images/bgs/python-button.png) 0 0 no-repeat;
+}
+
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
