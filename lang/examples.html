@@ -78,8 +78,8 @@ files
 This is (aside from the empty manifest) about as simple as a manifest can be.</p>
 
 <pre><code>file {
-    source  files/bash/bashrc
-    target  $HOME/.bashrc
+    source  "files/bash/bashrc"
+    target  "$HOME/.bashrc"
 }</code></pre>
 
 <p>kept in a SALVE repo, under the name of <code>manifests/bash.manifest</code>.</p>
@@ -94,12 +94,12 @@ This is (aside from the empty manifest) about as simple as a manifest can be.</p
 <p>When run via <code>./salve.py deploy -m manifests/bash.manifest</code>, this manifest expandds with the defaults to</p>
 
 <pre><code>file {
-    source      files/bash/bashrc
-    target      $HOME/.bashrc
+    source      "files/bash/bashrc"
+    target      "$HOME/.bashrc"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }</code></pre>
 
 <p>This specifies that the file in the salve repo, at <code>$SALVE_ROOT/files/bash/bashrc</code>, should be copied to <code>$HOME/.bashrc</code>.
@@ -119,23 +119,23 @@ If there is an existing file at <code>$HOME/.bashrc</code>, SALVE will back it u
 <div class="folding-code">
 <h3>zsh.manifest</h3>
 <code>file {
-    source  files/zsh/zshrc
-    target  $HOME/.zshrc
+    source  "files/zsh/zshrc"
+    target  "$HOME/.zshrc"
 }
 
 file {
-    source  files/zsh/zshrc.zni
-    target  $HOME/.zshrc.zni
+    source  "files/zsh/zshrc.zni"
+    target  "$HOME/.zshrc.zni"
 }
 
 file {
-    source  files/zsh/zsh_git_aliases
-    target  $HOME/.zsh_git_aliases
+    source  "files/zsh/zsh_git_aliases"
+    target  "$HOME/.zsh_git_aliases"
 }
 
 file {
-    source  files/zsh/zsh_dircolors
-    target  $HOME/.zsh_dircolors
+    source  "files/zsh/zsh_dircolors"
+    target  "$HOME/.zsh_dircolors"
 }</code>
 </div>
 
@@ -148,19 +148,19 @@ file {
 <p>When run via <code>./salve.py deploy -m manifests/zsh.manifest</code>, this manifest first specifies</p>
 
 <pre><code>file {
-    source  files/zsh/zshrc
-    target  $HOME/.zshrc
+    source  "files/zsh/zshrc"
+    target  "$HOME/.zshrc"
 }</code></pre>
 
 <p>which expands with the defaults to</p>
 
 <pre><code>file {
-    source      files/zsh/zshrc
-    target      $HOME/.zshrc
+    source      "files/zsh/zshrc"
+    target      "$HOME/.zshrc"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }</code></pre>
 
 <p>As with the bash manifest, this specifies that the file at
@@ -179,39 +179,39 @@ file {
 <div class="folding-code">
 <h3>Expanded zsh.manifest</h3>
 <code>file {
-    source      files/zsh/zshrc
-    target      $HOME/.zshrc
+    source      "files/zsh/zshrc"
+    target      "$HOME/.zshrc"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }
 
 file {
-    source      files/zsh/zshrc.zni
-    target      $HOME/.zshrc.zni
+    source      "files/zsh/zshrc.zni"
+    target      "$HOME/.zshrc.zni"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }
 
 file {
-    source      files/zsh/zsh_git_aliases
-    target      $HOME/.zsh_git_aliases
+    source      "files/zsh/zsh_git_aliases"
+    target      "$HOME/.zsh_git_aliases"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }
 
 file {
-    source      files/zsh/zsh_dircolors
-    target      $HOME/.zsh_dircolors
+    source      "files/zsh/zsh_dircolors"
+    target      "$HOME/.zsh_dircolors"
     action      copy
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }</code>
 </div>
 
@@ -229,18 +229,18 @@ It is kept under the name of <code>manifest/vim.manifest</code>.</p>
 <div class="folding-code">
 <h3>vim.manifest</h3>
 <code>directory {
-    target  $home/.vim/colors
+    target  "$HOME/.vim/colors"
     action  create
 }
 
 file {
-    source  files/vim/vimrc
-    target  $HOME/.vimrc
+    source  "files/vim/vimrc"
+    target  "$HOME/.vimrc"
 }
 
 file {
-    source  files/vim/solarized.vim
-    target  $HOME/.vim/colors/solarized.vim
+    source  "files/vim/solarized.vim"
+    target  "$HOME/.vim/colors/solarized.vim"
 }</code>
 </div>
 
@@ -255,18 +255,18 @@ file {
 <p>When run via <code>./salve.py deploy -m manifest/vim.manifest</code>, this manifest first specifies</p>
 
 <pre><code>directory {
-    target  $HOME/.vim/colors
+    target  "$HOME/.vim/colors"
     action  create
 }</code></pre>
 
 <p>which expands with the defaults to</p>
 
 <pre><code>directory {
-    target      $HOME/.vim/colors
+    target      "$HOME/.vim/colors"
     action      create
     mode        755
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }</code></pre>
 
 <p>This specifies that a directory at <code>$HOME/.vim/colors</code>, should be created if it does not already exist, as it would be by the shell command <code>mkdir -p</code>.
@@ -287,27 +287,29 @@ With this action, there is no backup because the operations performed are necess
 <div class="folding-code">
 <h3>Expanded vim.manifest</h3>
 <code>directory {
-    target      $home/.vim/colors
     action      create
+    target      "$HOME/.vim/colors"
     mode        755
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }
 
 file {
-    source      files/vim/vimrc
-    target      $HOME/.vimrc
+    action      copy
+    source      "files/vim/vimrc"
+    target      "$HOME/.vimrc"
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }
 
 file {
-    source      files/vim/solarized.vim
-    target      $HOME/.vim/colors/solarized.vim
+    action      copy
+    source      "files/vim/solarized.vim"
+    target      "$HOME/.vim/colors/solarized.vim"
     mode        600
-    user        $USER
-    group       $SALVE_USER_PRIMARY_GROUP
+    user        "$USER"
+    group       "$SALVE_USER_PRIMARY_GROUP"
 }</code>
 </div>
 
