@@ -24,28 +24,25 @@ Here we describe the basic format of a manifest file.</p>
 <div class="folding-code">
 <h3>Manifest Source</h3>
 <code>file {
-    source  files/bash/bashrc
-    target  $HOME/.bashrc
+    source  "files/bash/bashrc"
+    target  "$HOME/.bashrc"
     mode    600
 }
 
-directory {
-    source  dirs/dircolors
-    target  $HOME/dircolors
+directory "$HOME/dircolors" {
+    source  "dirs/dircolors"
     action  copy
 }
 
 file {
-    source  /etc/passwd
-    target  /opt/myprog/passwd-clone
+    source  "/etc/passwd"
+    target  "/opt/myprog/passwd-clone"
     mode    0440
-    user    admin
-    group   root
+    user    "admin"
+    group   "root"
 }
 
-manifest {
-    source  manifests/vim.manifest
-}
+manifest "manifests/vim.manifest"
 </code>
 </div>
 
@@ -62,11 +59,14 @@ Some liberties have been taken with notation below.</p>
 <div class="folding-code">
 <h3>SALVE Grammar</h3>
 <code>e := Empty String
-   | block_id { attrs } e
+   | block_id optional_primary_attr { attrs } e
 
 block_id := "file"
           | "directory"
           | "manifest"
+
+optional_primary_attr := Empty String
+                       | value
 
 attrs := Empty String
        | name value attrs
@@ -139,8 +139,8 @@ This ensures that <code>HOME</code> always refers to the invoking user's homedir
 <p>Given the block below</p>
 
 <pre><code>file {
-    source  files/bash/bashrc
-    target  $HOME/.bashrc
+    source  "files/bash/bashrc"
+    target  "$HOME/.bashrc"
     mode    600
 }
 </code></pre>
@@ -156,9 +156,11 @@ This holds even when "user1" invokes SALVE with sudo.</p>
     Relative Paths
 </h2>
 
-<p>Relative paths are also supported, so that it is not necessary to rely on values like <code>$SALVE_ROOT</code> and <code>$PWD</code>.
+<p>Relative paths are also supported, so that it is not necessary to rely on values like <code>$PWD</code>.
 Relative paths are always interpreted relative to the root manifest's location.
-One item on the docket is to make this an available override behavior via the fileroot commandline option, but to specify relative paths with respect to the dirname of the manifest that contains the block in question.</p>
+One item on the docket is to make an available override behavior to specify
+relative paths with respect to the dirname of the manifest containing the
+relative path.</p>
 
 <h3>
     <a name="example-1" class="anchor" href="#example-1">
@@ -170,14 +172,40 @@ One item on the docket is to make this an available override behavior via the fi
 <p>Given the block below</p>
 
 <pre><code>file {
-    source  files/bash/bashrc
-    target  $HOME/.bashrc
+    source  "files/bash/bashrc"
+    target  "$HOME/.bashrc"
     mode    600
 }
 </code></pre>
 
-<p>if SALVE is invoked as <code>python salve.py -m /tmp/myconf/root.manifest</code>,
+<p>if SALVE is invoked as <code>salve -m /tmp/myconf/root.manifest</code>,
 then the value of "source" after expansion is "/tmp/myconf/files/bash/bashrc"</p>
+
+<h2>
+    <a name="primary-attrs" class="anchor" href="#primary-attrs">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Primary Attributes
+</h2>
+
+<p>Primary Attributes are specified immediately after the block type, and are
+attribute values, as in <code>manifest "manifests/vim.manifest"</code>.
+They have different semantics depending on the type of block being used.
+In the case of file and directory blocks, the primary attribute is the "target"
+or file or directory to create or copy over, while in the case of manifest
+blocks it is the "source" or manifest whose contents should be read.</p>
+
+<p>Primary Attributes are assigned to the block being parsed as though they
+were specified explicitly with their matching attribute name.
+In other words,</p>
+
+<pre><code>manifest "manifests/vim.manifest"</code></pre>
+
+<p>is exactly the same as writing</p>
+
+<pre><code>manifest {
+    source "manifests/vim.manifest"
+}</code></pre>
 
 <h2>
     <a name="definitions" class="anchor" href="#definitions">
