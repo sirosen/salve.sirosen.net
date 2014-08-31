@@ -18,8 +18,10 @@ layout: default
     Step 1: Install SALVE
 </h1>
 
-<p>The recommended way to use SALVE is to fork it and layer your own configuration on top of it.
-By doing this, it becomes possible to trivially pull in upstream changes from the stable branch or release versions of SALVE.
+<p>The recommended way to use SALVE is to add it to your git repository as a
+submodule, or to fork it and layer your own configuration on top of it.
+By doing this, it becomes possible to trivially pull in upstream changes from
+the stable branch or release versions of SALVE.
 It also guarantees that whenever you put your configuration onto a machine, you
 will be able to deploy it with SALVE.</p>
 
@@ -43,22 +45,21 @@ manifests.</p>
     Step 2: Add Your Bashrc
 </h1>
 
-<p>These steps work with any file of your choice, but a bashrc is a good example of a file that should be managed with SALVE.
+<p>These steps work with any file of your choice, but a bashrc is a good
+example of a file that should be managed with SALVE.
 You can use SALVE with any VCS, but we will assume that you have chosen
-<code>git</code> because of the numerous high-profile free-hosting options.</p>
+<code>git</code>.</p>
 
 <p>First, add your bashrc file to your repository.
-If you have forked SALVE, it is good practice to keep your files separate from the SALVE source and tests, to avoid merge conflicts with the upstream versions.
-To do this, we recommend using a top-level directory named "files".
 In your shell, inside of the repository root,</p>
 
-<pre><code>mkdir -p files/bash
-cp ~/.bashrc files/bash/bashrc</code></pre>
+<pre><code>mkdir -p bash
+cp ~/.bashrc bash/bashrc</code></pre>
 
 <p>Now, add a manifest, metaconfiguration that describes where the bashrc file goes on your system.</p>
 
 <pre><code>echo 'file {
-source "files/bash/bashrc"
+source "bash/bashrc"
 target "$HOME/.bashrc"
 action "copy"
 }' > bash.manifest</pre></code>
@@ -75,7 +76,8 @@ Push to any remotes you use, and you are now ready to deploy your bashrc with SA
 </h1>
 
 <p>The final step is to deploy your bashrc using SALVE.
-Since SALVE automagically backs up files that it overwrites, you can always recover the older bashrc file after you deploy.
+Since SALVE automagically backs up files that it overwrites if it has read
+access, you can always recover the older bashrc file after you deploy.
 Just run</p>
 
 <pre><code>git clone https://my-remote/my-config
