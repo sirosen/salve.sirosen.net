@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 ---
 
 <p>A Project by Stephen Rosen</p>
@@ -11,13 +11,15 @@ layout: home
     What is SALVE?
 </h1>
 
-<p>SALVE is a language -- and an in-memory compiler for that language -- for deploying configuration files.
+<p>SALVE is a language -- and an interpreter for that language -- for deploying configuration files.
 It's purpose is to make it simple to keep configuration versioned in a VCS, then deploy it in a UNIX filesystem.</p>
 
-<p>A SALVE repository holds the full source for SALVE, any configuration files, and a set of Manifest files.
+<p>A SALVE repository holds your configuration files, and a set of Manifest files.
 Manifests are lists of</p>
 
 <ul>
 <li>Files and directories with destinations, ugo permissions, owner, and group</li>
 <li>Other manifests, excluding the current manifest and its ancestors (i.e. no loops allowed)</li>
-</ul><p>Typically, a SALVE repository also holds one root manifest, which lists all of the other manifests to be used.</p>
+</ul>
+
+<p>Typically, a SALVE repository also holds one root manifest, which lists all of the other manifests to be used.</p>

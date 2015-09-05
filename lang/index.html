@@ -1,5 +1,5 @@
 ---
-layout: langpage
+layout: default
 ---
 
 <h1>
@@ -21,9 +21,13 @@ Here we describe the basic format of a manifest file.</p>
 
 <p>We begin with an example, which will be broken down and explained in the sections below.</p>
 
-<div class="folding-code">
-<h3>Manifest Source</h3>
-<code>file {
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#manifest-source-ex1" aria-expanded="false"
+        aria-controls="manifest-source-ex1">
+Manifest Source <span class="caret"></span>
+</button>
+<div id="manifest-source-ex1" class="collapse">
+<pre><code>file {
     source  "files/bash/bashrc"
     target  "$HOME/.bashrc"
     mode    600
@@ -43,7 +47,7 @@ file {
 }
 
 manifest "manifests/vim.manifest"
-</code>
+</code></pre>
 </div>
 
 <h2>
@@ -56,9 +60,13 @@ manifest "manifests/vim.manifest"
 <p>A manifest is a file containing expressions, <em>e</em>, in the following basic grammar.
 Some liberties have been taken with notation below.</p>
 
-<div class="folding-code">
-<h3>SALVE Grammar</h3>
-<code>e := Empty String
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#grammar" aria-expanded="false"
+        aria-controls="grammar">
+SALVE Grammar <span class="caret"></span>
+</button>
+<div id="grammar" class="collapse">
+<pre><code>e := Empty String
    | block_id optional_primary_attr { attrs } e
 
 block_id := "file"
@@ -98,7 +106,7 @@ valuechar := namechar
            | "&lt;" | "&gt;" | "*"
            | "?" | "!" | "%"
            | "#"
-</code>
+</code></pre>
 </div>
 
 <p>Note that this only defines the grammar of acceptable SALVE expressions

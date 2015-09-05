@@ -1,5 +1,5 @@
 ---
-layout: langpage
+layout: default
 ---
 
 <h1>
@@ -52,9 +52,13 @@ By specifying default values, SALVE replaces failure conditions with default beh
 <p>The ini file is applied to blocks based on simple matching rules.
 Consider this config file:</p>
 
-<div class="folding-code">
-<h3>settings.ini</h3>
-<code>[global]
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#settings-ini" aria-expanded="false"
+        aria-controls="settings-ini">
+settings.ini <span class="caret"></span>
+</button>
+<div id="settings-ini" class="collapse">
+<pre><code>[global]
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 
@@ -70,7 +74,7 @@ user=$USER
 group=$SALVE_USER_PRIMARY_GROUP
 action=copy
 
-[manifest]</code>
+[manifest]</code></pre>
 </div>
 
 <p>This specifies that the global attributes <code>backup_dir</code> and <code>backup_log</code> should be set to <code>$HOME/.salve/backups</code> and <code>$HOME/.salve/backup.log</code> respectively.

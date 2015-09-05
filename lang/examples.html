@@ -1,5 +1,5 @@
 ---
-layout: langpage
+layout: default
 ---
 
 <h1>
@@ -13,9 +13,13 @@ layout: langpage
 
 <p>All examples are evaluated with the following settings:</p>
 
-<div class="folding-code">
-<h3>default_settings.ini</h3>
-<code>[global]
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#default-settings" aria-expanded="false"
+        aria-controls="default-settings">
+default_settings.ini <span class="caret"></span>
+</button>
+<div id="default-settings" class="collapse">
+<pre><code>[global]
 backup_dir=$HOME/.salve/backups
 backup_log=$HOME/.salve/backup.log
 verbosity=2
@@ -33,14 +37,18 @@ mode=600
 action=copy
 mode=755
 
-[manifest]</code>
+[manifest]</code></pre>
 </div>
 
 <p>and the following directory structure:</p>
 
-<div class="folding-code">
-<h3>Directory Tree</h3>
-<code>LICENSE
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#dir-tree" aria-expanded="false"
+        aria-controls="dir-tree">
+Directory Tree <span class="caret"></span>
+</button>
+<div id="dir-tree" class="collapse">
+<pre><code>LICENSE
 README.md
 default_settings.ini
 salve.py
@@ -63,7 +71,7 @@ files
 |   `-- zshrc.zni
 `-- vim
     |-- solarized.vim
-    `-- vimrc</code>
+    `-- vimrc</code></pre>
 </div>
 
 <h1>
@@ -116,9 +124,13 @@ If there is an existing file at <code>$HOME/.bashrc</code>, SALVE will back it u
 
 <p>Consider the following manifest that handles zsh configuration, stored in <code>manifests/zsh.manifest</code>.</p>
 
-<div class="folding-code">
-<h3>zsh.manifest</h3>
-<code>file {
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#zsh-man" aria-expanded="false"
+        aria-controls="zsh-man">
+zsh.manifest <span class="caret"></span>
+</button>
+<div id="zsh-man" class="collapse">
+<pre><code>file {
     source  "files/zsh/zshrc"
     target  "$HOME/.zshrc"
 }
@@ -136,7 +148,7 @@ file {
 file {
     source  "files/zsh/zsh_dircolors"
     target  "$HOME/.zsh_dircolors"
-}</code>
+}</code></pre>
 </div>
 
 <h2>
@@ -176,9 +188,13 @@ file {
 
 <p>As a more complete view, a fully expanded manifest is</p>
 
-<div class="folding-code">
-<h3>Expanded zsh.manifest</h3>
-<code>file {
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#zsh-man-expand" aria-expanded="false"
+        aria-controls="zsh-man-expand">
+Expanded zsh.manifest <span class="caret"></span>
+</button>
+<div id="zsh-man-expanded" class="collapse">
+<pre><code>file {
     source      "files/zsh/zshrc"
     target      "$HOME/.zshrc"
     action      copy
@@ -212,7 +228,7 @@ file {
     mode        600
     user        "$USER"
     group       "$SALVE_USER_PRIMARY_GROUP"
-}</code>
+}</code></pre>
 </div>
 
 
@@ -226,9 +242,13 @@ file {
 <p>The following manifest handles vim configuration, and includes a directory action.
 It is kept under the name of <code>manifest/vim.manifest</code>.</p>
 
-<div class="folding-code">
-<h3>vim.manifest</h3>
-<code>directory {
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#vim-man" aria-expanded="false"
+        aria-controls="vim-man">
+vim.manifest <span class="caret"></span>
+</button>
+<div id="vim-man" class="collapse">
+<pre><code>directory {
     target  "$HOME/.vim/colors"
     action  create
 }
@@ -241,7 +261,7 @@ file {
 file {
     source  "files/vim/solarized.vim"
     target  "$HOME/.vim/colors/solarized.vim"
-}</code>
+}</code></pre>
 </div>
 
 <h2>
@@ -284,9 +304,13 @@ With this action, there is no backup because the operations performed are necess
 
 <p>As a more complete view, a fully expanded manifest is</p>
 
-<div class="folding-code">
-<h3>Expanded vim.manifest</h3>
-<code>directory {
+<button class="btn btn-primary" type="button" data-toggle="collapse"
+        data-target="#vim-man-expanded" aria-expanded="false"
+        aria-controls="vim-man-expanded">
+Expanded vim.manifest <span class="caret"></span>
+</button>
+<div id="vim-man-expanded" class="collapse">
+<pre><code>directory {
     action      create
     target      "$HOME/.vim/colors"
     mode        755
@@ -310,7 +334,7 @@ file {
     mode        600
     user        "$USER"
     group       "$SALVE_USER_PRIMARY_GROUP"
-}</code>
+}</code></pre>
 </div>
 
 <p>Note that the <code>file[mode]</code> and <code>directory[mode]</code> are distinct, and that the specified directory action overrides the default <code>copy</code>.</p>

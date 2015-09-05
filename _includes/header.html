@@ -2,12 +2,20 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
-  <link rel="stylesheet" type="text/css" href="/stylesheets/aside.css" media="screen" />
-  <link rel="stylesheet" type="text/css" href="/stylesheets/code-fold.css" media="screen" />
-  <link rel="stylesheet" type="text/css" href="/stylesheets/navbar.css" media="screen" />
-  <link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui.min.css" media="screen" />
+
+
+  <!-- Minified JQuery from CDN -->
+  <!-- Must be included before bootstrap -->
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+  <!-- Twitter Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <!--Google Analytics Tracking Here-->
     <script>
@@ -41,43 +49,51 @@
   <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
 
-  <script type="text/javascript" src="/javascripts/jquery.js"></script>
-  <script type="text/javascript" src="/javascripts/jquery-ui.min.js"></script>
-
-  <script type="text/javascript" src="/javascripts/main.js"></script>
+  <!-- Custom CSS & Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css"/>
 
   <title>SALVE by sirosen</title>
 </head>
 
-<body>
-  <header>
-    <div class="inner">
-      <a href="/"><h1>SALVE<img src="/images/logo.png"></img></h1></a>
-    </div>
 
-    <div class="inner">
-      <navbar>
-        <ul>
-          <li><a href="/" class="linkbutton">Home</a>
-            <ul>
+<body>
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img alt="SALVE" src="/images/logo.png">
+            SALVE
+          </a>
+        </div>
+
+        <div>
+          <ul class="nav navbar-nav">
+          <li><a href="/quickstart.html">Quick Start Guide</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overview <span class="caret"></span></a>
+            <ul class="dropdown-menu">
               <li><a href="/why.html">Why Use SALVE?</a></li>
               <li><a href="/notes.html">Notes</a></li>
             </ul>
           </li>
-          <li><a href="/lang">The SALVE Language</a>
-            <ul>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">The Language <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/lang">Language Overview</a></li>
               <li><a href="/lang/examples.html">Examples</a></li>
               <li><a href="/lang/attributes.html">Attribute Precedence</a></li>
             </ul>
           </li>
-          <li><a href="/quickstart.html">Quick Start Guide</a></li>
           <li><a href="http://sirosen.net">About the Author</a></li>
-        </ul>
-      </navbar>
-    </div>
-
-
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
+
+<div class="container" id="main-content">
+  <div class="row">
+    <div class="col-md-9">
