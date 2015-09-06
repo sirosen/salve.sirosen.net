@@ -3,51 +3,10 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-
-  <!-- Minified JQuery from CDN -->
-  <!-- Must be included before bootstrap -->
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-  <!-- Twitter Bootstrap -->
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-  <!--Google Analytics Tracking Here-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-46092333-2', 'sirosen.net');
-      ga('send', 'pageview');
-
-    </script>
-
-  <!--[if lt IE 9]>
-  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="images/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
-  <link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
-  <link rel="icon" type="image/png" href="/images/icons/images/icons/favicon-160x160.png" sizes="160x160">
-  <link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+  {% include header/bootstrap_source.html %}
+  {% include header/google_analytics.html %}
+  {% include header/ie_html5shiv.html %}
+  {% include header/favicons.html %}
 
   <!-- Custom CSS & Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
@@ -60,38 +19,7 @@
 <body>
 
   <header>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">
-            <img alt="SALVE" src="/images/logo.png">
-            SALVE
-          </a>
-        </div>
-
-        <div>
-          <ul class="nav navbar-nav">
-          <li><a href="/quickstart.html">Quick Start Guide</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overview <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/why.html">Why Use SALVE?</a></li>
-              <li><a href="/notes.html">Notes</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">The Language <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/lang">Language Overview</a></li>
-              <li><a href="/lang/examples.html">Examples</a></li>
-              <li><a href="/lang/attributes.html">Attribute Precedence</a></li>
-            </ul>
-          </li>
-          <li><a href="http://sirosen.net">About the Author</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  {% include header/navbar.html %}
   </header>
 
 <div class="container" id="main-content">
