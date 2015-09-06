@@ -18,19 +18,10 @@ layout: default
     Step 1: Install SALVE
 </h1>
 
-<p>The recommended way to use SALVE is to add it to your git repository as a
-submodule, or to fork it and layer your own configuration on top of it.
-By doing this, it becomes possible to trivially pull in upstream changes from
-the stable branch or release versions of SALVE.
-It also guarantees that whenever you put your configuration onto a machine, you
-will be able to deploy it with SALVE.</p>
-
-<p>However, if you want to get started as quickly as possible, you should just
-install the latest stable version through <code>easy_install</code> or
-<code>pip</code>.
-You can look into forking the repo or handling inclusion of the SALVE source
-with your configuration by other means in the future.
-By way of example, you can install with pip:</p>
+<p>The quickest and easiest way to get a version of SALVE to play with is to
+install the latest stable version from
+<a href="https://pypi.python.org/">PyPi</a>.</p>
+<code>easy_install</code> should work, but <code>pip</code> is recommended.</p>
 
 <pre><code>pip install salve</code></pre>
 
@@ -46,12 +37,9 @@ manifests.</p>
 </h1>
 
 <p>These steps work with any file of your choice, but a bashrc is a good
-example of a file that should be managed with SALVE.
-You can use SALVE with any VCS, but we will assume that you have chosen
-<code>git</code>.</p>
+example of a file that should be managed with SALVE.</p>
 
-<p>First, add your bashrc file to your repository.
-In your shell, inside of the repository root,</p>
+<p>In your shell, inside of the repository root,</p>
 
 <pre><code>mkdir -p bash
 cp ~/.bashrc bash/bashrc</code></pre>
@@ -64,7 +52,8 @@ target "$HOME/.bashrc"
 action "copy"
 }' > bash.manifest</pre></code>
 
-<p>Finally, add these files to your git repository.
+<p>SALVE works on any VCS, but we will assume that you are using <code>git</code>.
+So, add these files to your local repository.
 <code>git commit -am "Adding bashrc and bash manifest."</code>
 Push to any remotes you use, and you are now ready to deploy your bashrc with SALVE.</p>
 
@@ -77,7 +66,7 @@ Push to any remotes you use, and you are now ready to deploy your bashrc with SA
 
 <p>The final step is to deploy your bashrc using SALVE.
 Since SALVE automagically backs up files that it overwrites if it has read
-access, you can always recover the older bashrc file after you deploy.
+access, you can recover the older bashrc file after you deploy, if necessary.
 Just run</p>
 
 <pre><code>git clone https://my-remote/my-config

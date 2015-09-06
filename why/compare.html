@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+<h1>Compare With Other Systems</h1>
+
+<p>Compare SALVE with other systems.
+Close examination will show that for personal configuration, SALVE is on fairly even footing, but much easier to learn.</p>
+
+<p>None of this is meant as a dig at the big players in this space.
+However, for a few files in your home directory you don't need their expressive power.</p>
+
+<h2>Chef and Puppet are Very Complicated</h2>
+
+<p>There are a few prominent tools to manage configuration on servers.
+Some of the most popular ones seem to be Chef and Puppet.
+For those unfamiliar with these tools, the following is a list of key concepts and components in Chef:
+
+<ul>
+<li>Nodes</li>
+<li>Clients</li>
+<li>Environments</li>
+<li>Roles</li>
+<li>Run Lists</li>
+<li>Attributes</li>
+<li>(Encrypted) Data Bags</li>
+<li>Cookbooks</li>
+<li>Recipes</li>
+<li>Libraries</li>
+<li>(Lightweight) Resource Providers</li>
+<li>Ohai</li>
+<li>chef-client</li>
+<li>chef-server</li>
+<li>chef-solo</li>
+<li>Knife</li>
+<li>Ruby DSLs</li>
+</ul>
+
+There is a lot of expressive power in these tools, but there is a high cost for this power.
+The distinction between a User and a Developer becomes blurred -- knowing how
+to use the tool requires understanding, in some depth, how it was made.
+The components are complicated and hard to use correctly.
+</p>
+
+<p>By contrast, here is the list of new concepts introduced by SALVE:
+<ul>
+<li>SALVE Language</li>
+<li>SALVE CLI</li>
+</ul>
+</p>
+
+<h3>This Complexity Isn't Always Necessary</h3>
+
+<p>Chef, Puppet, and related tools need to keep track of server state and know when and where an update needs to be made.
+Machines can ask questions "Am I listed as a 'web-server'? Am I in the 'nagios-monitored' group?" and choose different components based on the answers.
+These configuration management servers can provision, update, and track the state of hundreds or even tens of thousands of servers.
+These aren't just the power tools; they're full-scale construction equipment.
+In your own home, you generally want something smaller, simpler, and easier to use.
+</p>
+
+<p>With SALVE, you keep a version controlled directory of configuration files in the state that you want them, and write in a DSL (the SALVE Language) to deploy them.
+When you want to deploy on a machine, all you need to know in order to deduce how a deployment will run is the state that the local repository is in.
+This dramatically simplified approach is much more suitable to personal configuration.</p>
+
+<h2>SALVE is Idempotent but Imperative</h2>
+
+<p>Many configuration management systems are "goal oriented".
+Rather than listing a set of commands, they try to describe the desired state of the system, and then put it in that state.
+This makes it hard to understand the flow of execution, especially in the presence of errors.</p>
+
+<p>By contrast, SALVE execution is purely sequential and imperative, meaning that it should be possible to read manifests top to bottom and know what will be executed.
+This should hold regardless of the machine state.</p>
+
+<p>One of the main advantages of goal-oriented configuration is that it guarantees that multiple runs are idempotent.
+SALVE aims to solve this problem in the simplest and most direct way possible: by only supporting descriptions of actions which are inherently idempotent.</p>

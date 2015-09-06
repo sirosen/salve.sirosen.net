@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+<h1>
+    <a name="why-salve" class="anchor" href="#why-salve">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Why SALVE?
+</h1>
+
+<p>SALVE is designed to</p>
+
+<ul>
+    <li>Safely deploy configuration files kept in a VCS</li>
+    <li>Be (much) less complicated than existing software for this purpose</li>
+</ul>
+
+<h2>
+    <a name="much-safer-than-shell-scripts" class="anchor"
+       href="#much-safer-than-shell-scripts">
+        <span class="octicon octicon-link"></span>
+    </a>
+    Much Safer Than Shell Scripts
+</h2>
+
+<p>One of the typical solutions for personalized configuration is to keep a set of shell scripts which do the deployment work as file copies, directory creations, and so forth.
+Why use SALVE if it offers strictly fewer features than a shell?
+Because it is significantly safer to run SALVE than a shell script which may have critical typos!</p>
+
+<p>SALVE does not assume that you can actually perform all of the actions you requested, or that you have correctly specified your manifests.
+You may have typos in your files, which will be caught before any actions are run.
+The system may have broken permissions for some directories, or you may be trying to copy a file which doesn't exist.</p>
+
+<p>The ultimate goal is to ensure, as much as possible, that the requested actions can be executed successfully.
+This includes validating acceptable values, and ensuring the effective UID grants sufficient permissions to perform actions.
+The burden is always ultimately on you to ensure that your configuration is correct, but your tools should make that easy, not hard.
+SALVE will do its best to detect and abort on errors pertaining to botched specifications prior to any part of the execution beginning.</p>
+
+
+<h1>
+    <a name="minimal-dependencies" class="anchor"
+       href="#minimal-dependencies">
+       <span class="octicon octicon-link">
+       </span>
+    </a>
+   Minimal Dependencies
+</h1>
+
+<p>SALVE does not rely on external tools like Debian's dpkg or OSX's MacPorts.
+Ultimately, all that's required is python2.6+, a working shell, and permissions to perform the operations requested in the Manifests.</p>
+
+<p>SALVE does not use any python eggs or other packages, and attempts to depend more on python's extensive set of builtins than shell commands.</p>

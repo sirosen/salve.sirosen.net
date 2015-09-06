@@ -15,6 +15,9 @@ header {
 .navbar .navbar-brand {
     color: #FFD700;
 }
+.navbar .navbar-nav .dropdown-header {
+    color: #A4A4A4;
+}
 .navbar .navbar-nav li a {
     color: #FFD700;
 }
